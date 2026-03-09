@@ -2265,7 +2265,9 @@ button:focus {
   top: 0;
   left: 0;
   z-index: 99;
-  transition: background 0.4s, all 0.3s linear; }
+  transition: background 0.4s, all 0.3s linear;
+  background: white;
+}
   .header_area .main_menu {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
@@ -2336,7 +2338,7 @@ button:focus {
             transition: all 0.4s linear; }
             .header_area .navbar .nav .nav-item.submenu ul .nav-item .nav-link {
               line-height: 45px;
-              color: #222222;
+              color: #ffffff;
               padding: 0px 30px;
               transition: all 150ms linear;
               display: block;
@@ -2385,12 +2387,26 @@ button:focus {
       .header_area.white_menu .navbar .navbar-brand img + img {
         display: inline-block; } }
   @media (max-width: 991px) {
+    .header_area,
+  .header_area .main_menu,
+  .header_area .navbar{
+    background: #ffffff !important;
+ 
+  }
+    
+  .header_area .navbar-collapse,
+.header_area .navbar-collapse .navbar-nav
+{
+  max-height: none !important;
+  overflow: hidden !important;
+}
+
     .header_area.white_menu .navbar .navbar-brand img {
       display: inline-block; }
       .header_area.white_menu .navbar .navbar-brand img + img {
         display: none; } }
   .header_area.white_menu .navbar .nav .nav-item .nav-link {
-    color: #fff; }
+    color: #080808; }
   .header_area.white_menu.navbar_fixed .main_menu .navbar .navbar-brand img {
     display: inline-block; }
     .header_area.white_menu.navbar_fixed .main_menu .navbar .navbar-brand img + img {
@@ -2398,6 +2414,10 @@ button:focus {
   .header_area.white_menu.navbar_fixed .main_menu .navbar .nav .nav-item .nav-link {
     line-height: 70px;
     color: #222222; }
+    .navbar-toggler.icon-bar {
+    color: #000;
+}
+ 
 
 .top_menu {
   background: #ec9d5f; }
@@ -3283,7 +3303,7 @@ button:focus {
     right: 22px; }
 .reservation_form .form-group:last-child {
   text-align: center; }
-  
+
 
 /* End Reservation Form Area css
 ============================================================================================ */
@@ -3345,6 +3365,15 @@ button:focus {
 .contact_form .submit_btn {
   margin-top: 20px;
   cursor: pointer; }
+.map-section {
+    margin-top: 50px;
+   
+}
+.map-section iframe {
+    display: block;
+    width: 100%;
+}
+
 
 /* Contact Success and error Area css
 ============================================================================================ */
