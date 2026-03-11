@@ -3211,6 +3211,7 @@ button:focus {
           .home_map_area .home_details .box_home_details .media .d-flex i {
             font-size: 20px;
             background: linear-gradient(to right, #2c28b1 0%, #9b5cf6 70%);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent; }
         .home_map_area .home_details .box_home_details .media .media-body h4 {
@@ -5899,6 +5900,9 @@ h6 {
 .ai_content {
     position: relative;
     z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .ai_content .main_btn {
@@ -5947,12 +5951,135 @@ h6 {
     line-height: 1.7;
     margin-bottom: 1.5rem;
 }
+.ai-image{
+    width:80px;
+    height:auto;
+    object-fit: contain;
+    margin-top: 20px;
+    margin-bottom:15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ai-divider{
+    width:100px;
+    height:1.5px;
+    background:#42A5F5;
+    margin:4px auto;
+    margin-bottom: 30px;
+    border-radius:3px;
+}
+
+.ai-card{
+    opacity:0;
+    transform:translateY(30px);
+    animation: cardAppear 0.8s ease forwards;
+}
+
+.ai-card:nth-child(2){
+    animation-delay:0.2s;
+}
+
+.ai-card:nth-child(3){
+    animation-delay:0.4s;
+}
+
+@keyframes cardAppear{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px){
+    .ai-image{
+        width:140px;
+        height:auto;
+    }
+    .ai-card{
+        max-width: 400px;
+        min-height: 250px;
+        padding: 20px;
+    }
+    .ai_features{
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 0;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1200px){
+    .ai-image{
+        width:150px;
+        height:auto;
+    }
+    .ai-card{
+        max-width: 600px;
+        min-height: 280px;
+        padding: 25px;
+    }
+    .ai_features{
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2.5rem;
+        margin-top: 0;
+    }
+}
+
+
+.ai-card:hover .ai-image{
+    transform: scale(1.15);
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    filter: brightness(1.1) saturate(1.2);
+}
+.ai-card{
+    padding: 30px 20px;
+   
+}
+.ai-card{
+    padding:15px;
+    border-radius:12px;
+    transition: all 0.3s ease;
+    margin: 0 auto;
+    text-align: center;
+    background: transparent;
+    box-shadow: none;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid transparent;
+    max-width: 300px;
+}
+
+.ai-card:hover{
+    background: rgba(245, 245, 245, 1);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    border: 1px solid #e9ecef;
+    transform: translateY(-10px);
+}
 
 .ai_features {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
     margin-bottom: 2rem;
+}
+.ai_features-big {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    align-items: center;
+    justify-content: center;
 }
 
 .ai_feature_item {
@@ -6421,7 +6548,21 @@ h6 {
         height: 300px;
     }
 }
+#svg{
+    animation: float 3s ease-in-out infinite;
+}
 
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-12px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
 /* End AI Integration Showcase
 ============================================================================================ */
 /*---------------------------------------------------- */
