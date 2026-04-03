@@ -4,39 +4,39 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
+<!-- Updated sitemap for current site pages -->
 
 <url>
-  <loc>http://vulcanig.net/</loc>
-  <lastmod>2018-06-28T18:08:55+00:00</lastmod>
+  <loc>https://vulcanig.net/</loc>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>http://vulcanig.net/index.html</loc>
-  <lastmod>2018-06-28T18:08:55+00:00</lastmod>
+  <loc>https://vulcanig.net/index.html</loc>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://vulcanig.net/about-us.html</loc>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://vulcanig.net/Service.html</loc>
-  <lastmod>2018-06-27T15:51:41+00:00</lastmod>
+  <loc>https://vulcanig.net/services.html</loc>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://vulcanig.net/about.html</loc>
-  <lastmod>2018-06-27T15:22:57+00:00</lastmod>
+  <loc>https://vulcanig.net/ai-solutions.html</loc>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://vulcanig.net/success-story-ecta.html</loc>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://vulcanig.net/portfolio.html</loc>
-  <lastmod>2018-06-27T15:23:17+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://vulcanig.net/insights.html</loc>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>http://vulcanig.net/contact.html</loc>
-  <lastmod>2018-06-27T15:50:22+00:00</lastmod>
+  <loc>https://vulcanig.net/contact.html</loc>
   <priority>0.80</priority>
 </url>
-
 
 </urlset>
