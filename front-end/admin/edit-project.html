@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Edit Project | Vulcan ICT CMS</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-fixed": "#2c1700",
+            "outline": "#6d7980",
+            "surface-dim": "#d9dadb",
+            "on-primary-fixed": "#001e2c",
+            "surface-container-high": "#e7e8e9",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed": "#ffdcbc",
+            "tertiary-container": "#f59a24",
+            "inverse-surface": "#2e3132",
+            "secondary-fixed-dim": "#a0cce7",
+            "inverse-on-surface": "#f0f1f2",
+            "surface-container": "#edeeef",
+            "inverse-primary": "#78d1ff",
+            "surface-container-highest": "#e1e3e4",
+            "primary-container": "#06bcf9",
+            "background": "#f8f9fa",
+            "error": "#ba1a1a",
+            "on-secondary-fixed-variant": "#1c4c62",
+            "on-secondary-container": "#3a667d",
+            "primary-fixed": "#c2e8ff",
+            "on-surface": "#191c1d",
+            "on-secondary": "#ffffff",
+            "on-primary-fixed-variant": "#004d68",
+            "on-primary": "#ffffff",
+            "outline-variant": "#bcc8d1",
+            "surface-bright": "#f8f9fa",
+            "surface": "#f8f9fa",
+            "error-container": "#ffdad6",
+            "secondary": "#37637b",
+            "primary": "#006689",
+            "tertiary-fixed-dim": "#ffb86c",
+            "on-background": "#191c1d",
+            "on-surface-variant": "#3d484f",
+            "surface-variant": "#e1e3e4",
+            "surface-container-low": "#f3f4f5",
+            "on-primary-container": "#004862",
+            "on-error": "#ffffff",
+            "on-secondary-fixed": "#001e2c",
+            "primary-fixed-dim": "#78d1ff",
+            "secondary-container": "#b6e3fe",
+            "on-tertiary-fixed-variant": "#683c00",
+            "surface-tint": "#006689",
+            "on-tertiary-container": "#623800",
+            "on-error-container": "#93000a",
+            "secondary-fixed": "#c2e8ff",
+            "tertiary": "#895100",
+            "on-tertiary": "#ffffff"
+          },
+          "fontFamily": {
+            "headline": ["Manrope"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
+    .bg-gradient-primary { background: linear-gradient(135deg, #006689 0%, #06bcf9 100%); }
+  </style>
+</head>
+
+<body class="bg-background font-body text-on-surface">
+    <aside id="vulcanAdminSidebar" class="h-screen w-64 fixed left-0 top-0 overflow-y-auto bg-slate-100 flex flex-col py-6 px-4 z-50"></aside>
+
+  <header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 z-40 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl flex justify-between items-center px-8 border-b border-slate-200/50 dark:border-slate-800/50">
+    <div class="flex items-center gap-4 flex-1">
+      <div class="relative w-full max-w-md group">
+        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+        <input class="w-full bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all outline-none" placeholder="Search projects..." type="text"/>
+      </div>
+    </div>
+    <div class="flex items-center gap-6">
+      <a href="/admin/add-project" class="px-4 py-2 bg-gradient-primary text-white text-sm font-semibold rounded-xl shadow-lg shadow-primary/20 transition-transform active:scale-95">
+        New Project
+      </a>
+    </div>
+  </header>
+
+  <main class="ml-64 pt-24 pb-16 px-10">
+    <div class="max-w-5xl mx-auto">
+      <div id="successBox" class="mb-8 rounded-xl border border-green-200 bg-green-50 px-5 py-4 text-sm font-medium text-green-700 hidden">
+        Project updated successfully!
+      </div>
+
+      <form id="editProjectForm" enctype="multipart/form-data">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div>
+            <nav class="flex items-center gap-2 text-xs font-semibold text-primary uppercase tracking-widest mb-4">
+              <a href="/admin/projects">Projects</a>
+              <span class="material-symbols-outlined text-[10px]">chevron_right</span>
+              <span class="text-on-surface-variant">Edit Project</span>
+            </nav>
+            <h2 class="text-4xl font-extrabold font-headline tracking-tight text-on-surface" id="projectTitleHeading">—</h2>
+            <p class="text-on-surface-variant mt-2 text-lg">Update the details and technical specs for this portfolio item.</p>
+          </div>
+
+          <div class="flex gap-3">
+            <a href="/admin/projects" class="px-6 py-3 text-slate-600 font-semibold hover:bg-slate-200 transition-all rounded-xl">Discard</a>
+            <button type="submit" class="px-8 py-3 bg-gradient-primary text-white font-bold rounded-xl shadow-xl shadow-primary/30 transition-transform hover:-translate-y-1 active:scale-95">
+              Update Project
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div class="lg:col-span-2 space-y-8">
+            <div class="bg-surface-container-lowest rounded-xl p-8 transition-all">
+              <h3 class="text-xl font-bold font-headline mb-8 border-b border-surface-container-high pb-4">General Information</h3>
+              <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div class="space-y-2">
+                    <label class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant px-1">Project Name</label>
+                    <input class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 focus:bg-surface-container-lowest focus:ring-0 border-b-2 border-transparent focus:border-primary transition-all" type="text" name="title" id="title" required />
+                  </div>
+                  <div class="space-y-2">
+                    <label class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant px-1">Client Name</label>
+                    <input class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 focus:bg-surface-container-lowest focus:ring-0 border-b-2 border-transparent focus:border-primary transition-all" type="text" name="client" id="client" />
+                  </div>
+                </div>
+
+                <div class="space-y-2">
+                  <label class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant px-1">Description</label>
+                  <textarea class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 focus:bg-surface-container-lowest focus:ring-0 border-b-2 border-transparent focus:border-primary transition-all" rows="5" name="description" id="description" required></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div class="space-y-2 md:col-span-2">
+                    <label class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant px-1">Category</label>
+                    <input class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 focus:bg-surface-container-lowest focus:ring-0 border-b-2 border-transparent focus:border-primary transition-all" type="text" name="category" id="category" />
+                  </div>
+                  <div class="space-y-2">
+                    <label class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant px-1">Status</label>
+                    <div class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 text-on-surface-variant">Active</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-surface-container-lowest rounded-xl p-8 transition-all">
+              <h3 class="text-xl font-bold font-headline mb-6">Project Assets</h3>
+              <div class="space-y-4">
+                <div class="relative group aspect-video w-full rounded-xl overflow-hidden bg-slate-200" id="heroWrap">
+                  <div class="w-full h-full flex items-center justify-center text-slate-400 bg-slate-100">
+                    <span class="material-symbols-outlined text-4xl">image</span>
+                  </div>
+                </div>
+
+                <div class="flex items-center justify-center w-full">
+                  <label for="image" class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-outline-variant rounded-xl cursor-pointer bg-surface-container-low hover:bg-surface-container-lowest transition-all">
+                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                      <span class="material-symbols-outlined text-primary mb-2" style="font-size: 32px;">add_a_photo</span>
+                      <p class="text-sm text-on-surface-variant">Click to upload or replace the project image</p>
+                    </div>
+                    <input class="hidden" id="image" name="image" type="file" accept=".png,.jpg,.jpeg,.webp" onchange="showSelectedFile(event)"/>
+                  </label>
+                </div>
+
+                <div id="selectedFileBox" class="hidden items-center gap-3 p-3 bg-surface-container-low rounded-lg">
+                  <div class="w-10 h-10 rounded bg-surface-container-highest flex items-center justify-center">
+                    <span class="material-symbols-outlined text-base text-outline">image</span>
+                  </div>
+                  <div class="flex-1 overflow-hidden">
+                    <p id="selectedFileName" class="text-xs font-bold truncate">No file selected</p>
+                    <p class="text-[10px] text-outline">Ready for upload</p>
+                  </div>
+                  <button class="text-error hover:scale-110 transition-transform" type="button" onclick="clearSelectedFile()">
+                    <span class="material-symbols-outlined text-base">delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-8">
+            <div class="bg-surface-container-lowest rounded-xl p-8 transition-all">
+              <h3 class="text-lg font-bold font-headline mb-6">Timeline</h3>
+              <div class="space-y-6">
+                <div class="space-y-2">
+                  <label class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant px-1">Created Date</label>
+                  <div class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 text-on-surface-variant" id="createdAt">—</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-surface-container-lowest rounded-xl p-8 transition-all">
+              <h3 class="text-lg font-bold font-headline mb-6">Project Summary</h3>
+              <div class="space-y-4">
+                <div><p class="text-[10px] text-on-surface-variant uppercase tracking-wide">Project ID</p><p class="text-sm font-bold" id="pid">—</p></div>
+                <div><p class="text-[10px] text-on-surface-variant uppercase tracking-wide">Client</p><p class="text-sm font-bold" id="pclient">—</p></div>
+                <div><p class="text-[10px] text-on-surface-variant uppercase tracking-wide">Category</p><p class="text-sm font-bold" id="pcat">—</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    function showSelectedFile(event) {
+      const input = event.target;
+      const fileBox = document.getElementById("selectedFileBox");
+      const fileName = document.getElementById("selectedFileName");
+      if (input.files && input.files.length > 0) {
+        fileName.textContent = input.files[0].name;
+        fileBox.classList.remove("hidden");
+        fileBox.classList.add("flex");
+      }
+    }
+    function clearSelectedFile() {
+      const input = document.getElementById("image");
+      const fileBox = document.getElementById("selectedFileBox");
+      const fileName = document.getElementById("selectedFileName");
+      input.value = "";
+      fileName.textContent = "No file selected";
+      fileBox.classList.add("hidden");
+      fileBox.classList.remove("flex");
+    }
+  </script>
+
+  <script src="admin.js"></script>
+  <script src="shared.js"></script>
+  <script src="admin-layout.js"></script>
+  <script>
+    (function () {
+      if (!VulcanAdminUI.requireAuth()) return;
+      VulcanAdminLayout.renderSidebar("projects");
+      VulcanAdminUI.rewriteAdminLinks();
+      VulcanAdminUI.adminLogoutLinkHandler();
+
+      const params = new URLSearchParams(location.search);
+      const id = params.get("id");
+      if (!id) { location.href = "projects.html"; return; }
+
+      const API_ORIGIN = "http://localhost:3001";
+      const successBox = document.getElementById("successBox");
+      const form = document.getElementById("editProjectForm");
+
+      function imgUrl(image) {
+        if (!image) return null;
+        if (String(image).startsWith("http") || String(image).startsWith("/")) return `${API_ORIGIN}${String(image).startsWith("/") ? "" : "/"}${image}`;
+        return `${API_ORIGIN}/uploads/projects/${image}`;
+      }
+
+      function renderHero(image, title) {
+        const wrap = document.getElementById("heroWrap");
+        const url = imgUrl(image);
+        wrap.innerHTML = url
+          ? `<img alt="${title || ''}" class="w-full h-full object-cover" src="${url}"/>`
+          : `<div class="w-full h-full flex items-center justify-center text-slate-400 bg-slate-100"><span class="material-symbols-outlined text-4xl">image</span></div>`;
+      }
+
+      async function load() {
+        const { projects } = await VulcanAdmin.apiFetch(`/admin/projects`);
+        const project = (projects || []).find((p) => String(p.id) === String(id));
+        if (!project) {
+          location.href = "projects.html";
+          return;
+        }
+        document.getElementById("projectTitleHeading").textContent = project.title || "";
+        document.getElementById("title").value = project.title || "";
+        document.getElementById("client").value = project.client || "";
+        document.getElementById("description").value = project.description || "";
+        document.getElementById("category").value = project.category || "";
+        document.getElementById("createdAt").textContent = project.created_at || "";
+        document.getElementById("pid").textContent = project.id;
+        document.getElementById("pclient").textContent = project.client || "-";
+        document.getElementById("pcat").textContent = project.category || "-";
+        renderHero(project.image, project.title);
+      }
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        successBox.classList.add("hidden");
+        const fd = new FormData(form);
+        await VulcanAdmin.apiFetch(`/admin/projects/${id}`, { method: "PUT", body: fd });
+        successBox.classList.remove("hidden");
+        clearSelectedFile();
+        await load();
+      });
+
+      load().catch(console.error);
+    })();
+  </script>
+</body>
+</html>
+

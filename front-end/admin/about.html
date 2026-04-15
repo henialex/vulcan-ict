@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>About Page | Vulcan ICT CMS</title>
+
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "outline": "#6d7980",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f3f4f5",
+            "surface-container-high": "#e7e8e9",
+            "surface-container-highest": "#e1e3e4",
+            "surface-container": "#edeeef",
+            "surface": "#f8f9fa",
+            "background": "#f8f9fa",
+            "on-surface": "#191c1d",
+            "on-surface-variant": "#3d484f",
+            "outline-variant": "#bcc8d1",
+            "primary": "#006689",
+            "primary-container": "#06bcf9",
+            "error": "#ba1a1a"
+          }
+        },
+      },
+    }
+  </script>
+
+  <style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; vertical-align: middle; }
+    .bg-gradient-primary { background: linear-gradient(135deg, #006689 0%, #06bcf9 100%); }
+  </style>
+</head>
+
+<body class="bg-background text-on-surface font-body selection:bg-primary-container/30">
+    <aside id="vulcanAdminSidebar" class="h-screen w-64 fixed left-0 top-0 overflow-y-auto bg-slate-100 flex flex-col py-6 px-4 z-50"></aside>
+
+  <header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-white/80 backdrop-blur-xl z-40 border-b border-slate-200/50 flex justify-between items-center px-8">
+    <div class="flex items-center gap-4 flex-1">
+      <div>
+        <h2 class="text-lg font-extrabold tracking-tight font-headline">About Page</h2>
+        <p class="text-xs text-on-surface-variant">Edit about page content + checklist features.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="ml-64 mt-16 p-8 min-h-[calc(100vh-4rem)] space-y-8">
+    <div id="alertSuccess" class="hidden rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 px-4 py-3 text-sm"></div>
+    <div id="alertError" class="hidden rounded-xl bg-red-50 border border-red-200 text-red-900 px-4 py-3 text-sm"></div>
+
+    <section class="bg-surface-container-lowest rounded-xl shadow-sm p-6">
+      <div class="flex items-center justify-between gap-4 mb-4">
+        <div>
+          <h3 class="text-xl font-extrabold tracking-tight font-headline">About Content</h3>
+          <p class="text-sm text-on-surface-variant">Banner + main section + vision/mission + CTA.</p>
+        </div>
+        <button id="saveAboutContent" class="bg-gradient-primary text-white px-5 py-2.5 rounded-xl font-bold shadow-lg shadow-primary/20">
+          Save
+        </button>
+      </div>
+
+      <form class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <input type="hidden" id="aboutContentId" />
+
+        <div class="lg:col-span-2">
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Banner Title</label>
+          <input id="banner_title" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" required />
+        </div>
+        <div class="lg:col-span-2">
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Main Title</label>
+          <input id="main_title" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" />
+        </div>
+        <div class="lg:col-span-2">
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Main Subtitle</label>
+          <input id="main_subtitle" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" />
+        </div>
+
+        <div class="lg:col-span-2">
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Section Title</label>
+          <input id="section_title" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" />
+        </div>
+        <div class="lg:col-span-2">
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Paragraph 1</label>
+          <textarea id="paragraph_1" rows="3" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest"></textarea>
+        </div>
+        <div class="lg:col-span-2">
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Paragraph 2</label>
+          <textarea id="paragraph_2" rows="3" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest"></textarea>
+        </div>
+        <div class="lg:col-span-2">
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Paragraph 3</label>
+          <textarea id="paragraph_3" rows="3" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest"></textarea>
+        </div>
+
+        <div class="lg:col-span-2">
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">About Image Path</label>
+          <input id="about_image" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" placeholder="img/banner/home-left-1.png" />
+        </div>
+
+        <div class="lg:col-span-2 border-t border-surface-container-highest pt-5"></div>
+
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Vision Title</label>
+          <input id="vision_title" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" />
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Mission Title</label>
+          <input id="mission_title" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" />
+        </div>
+        <div class="lg:col-span-2">
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Vision Text</label>
+          <textarea id="vision_text" rows="3" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest"></textarea>
+        </div>
+        <div class="lg:col-span-2">
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Mission Text</label>
+          <textarea id="mission_text" rows="3" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest"></textarea>
+        </div>
+
+        <div class="lg:col-span-2 border-t border-surface-container-highest pt-5"></div>
+
+        <div class="lg:col-span-2">
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">CTA Title</label>
+          <input id="cta_title" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" />
+        </div>
+        <div class="lg:col-span-2">
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">CTA Description</label>
+          <textarea id="cta_description" rows="3" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">CTA Button 1 Text</label>
+          <input id="cta_button1_text" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" />
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">CTA Button 1 Link</label>
+          <input id="cta_button1_link" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" />
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">CTA Button 2 Text</label>
+          <input id="cta_button2_text" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" />
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">CTA Button 2 Link</label>
+          <input id="cta_button2_link" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" />
+        </div>
+      </form>
+    </section>
+
+    <section class="bg-surface-container-lowest rounded-xl shadow-sm p-6">
+      <div class="flex items-center justify-between gap-4 mb-4">
+        <div>
+          <h3 class="text-xl font-extrabold tracking-tight font-headline">Feature Checklist</h3>
+          <p class="text-sm text-on-surface-variant">Controls the check-list items on the about page.</p>
+        </div>
+        <button id="addFeatureBtn" class="px-4 py-2.5 rounded-xl font-bold bg-surface-container-high hover:bg-surface-container-highest transition-colors">
+          Add Feature
+        </button>
+      </div>
+
+      <div class="overflow-x-auto rounded-xl border border-surface-container-highest">
+        <table class="w-full text-left border-collapse">
+          <thead>
+          <tr class="bg-surface-container-low text-on-surface-variant text-[11px] uppercase tracking-[0.15em] font-bold">
+            <th class="px-6 py-4">Text</th>
+            <th class="px-6 py-4">Icon</th>
+            <th class="px-6 py-4">Sort</th>
+            <th class="px-6 py-4 text-right">Actions</th>
+          </tr>
+          </thead>
+          <tbody id="featuresBody" class="divide-y divide-surface-container"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="admin.js"></script>
+  <script src="shared.js"></script>
+  <script src="admin-layout.js"></script>
+  <script>
+    (function () {
+      if (!VulcanAdminUI.requireAuth()) return;
+      VulcanAdminLayout.renderSidebar("about");
+      VulcanAdminUI.rewriteAdminLinks();
+      VulcanAdminUI.adminLogoutLinkHandler();
+
+      const alertSuccess = document.getElementById("alertSuccess");
+      const alertError = document.getElementById("alertError");
+      function showSuccess(msg){alertError.classList.add("hidden"); alertSuccess.textContent=msg; alertSuccess.classList.remove("hidden"); setTimeout(()=>alertSuccess.classList.add("hidden"), 2500);}
+      function showError(msg){alertSuccess.classList.add("hidden"); alertError.textContent=msg||"Something went wrong."; alertError.classList.remove("hidden");}
+      function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+      const aboutContentId = document.getElementById("aboutContentId");
+      const saveAboutContentBtn = document.getElementById("saveAboutContent");
+      const contentFields = [
+        "banner_title","main_title","main_subtitle","section_title",
+        "paragraph_1","paragraph_2","paragraph_3","about_image",
+        "vision_title","vision_text","mission_title","mission_text",
+        "cta_title","cta_description","cta_button1_text","cta_button1_link","cta_button2_text","cta_button2_link"
+      ];
+
+      function fillContent(c){
+        aboutContentId.value = c && c.id ? c.id : "";
+        contentFields.forEach((k)=>{ const el=document.getElementById(k); el.value = (c && c[k]!=null) ? c[k] : ""; });
+      }
+      function payloadContent(){
+        const p={}; contentFields.forEach((k)=>p[k]=document.getElementById(k).value); return p;
+      }
+
+      async function loadContent(){
+        const { content } = await VulcanAdmin.apiFetch("/admin/about-content");
+        fillContent(content);
+      }
+
+      saveAboutContentBtn.addEventListener("click", async ()=>{
+        try{
+          saveAboutContentBtn.disabled=true;
+          const payload = payloadContent();
+          if (!payload.banner_title) return showError("Banner Title is required.");
+          const id = aboutContentId.value;
+          if (id) {
+            await VulcanAdmin.apiFetch(`/admin/about-content/${encodeURIComponent(id)}`, { method:"PUT", headers:{ "Content-Type":"application/json" }, body: JSON.stringify(payload) });
+            showSuccess("About content updated.");
+          } else {
+            const res = await VulcanAdmin.apiFetch("/admin/about-content", { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify(payload) });
+            aboutContentId.value = res.id;
+            showSuccess("About content created.");
+          }
+        } catch(e){
+          showError(e.message || "Failed saving about content.");
+        } finally {
+          saveAboutContentBtn.disabled=false;
+        }
+      });
+
+      // Features CRUD (prompt-based)
+      const featuresBody = document.getElementById("featuresBody");
+      const addFeatureBtn = document.getElementById("addFeatureBtn");
+
+      async function loadFeatures(){
+        const { features } = await VulcanAdmin.apiFetch("/admin/about-features");
+        featuresBody.innerHTML = (features||[]).map((f)=>`
+          <tr class="group hover:bg-surface-container-low/30 transition-colors">
+            <td class="px-6 py-5">
+              <div class="font-semibold">${esc(f.feature_text)}</div>
+            </td>
+            <td class="px-6 py-5 text-on-surface-variant">${esc(f.icon_class||"")}</td>
+            <td class="px-6 py-5 text-on-surface-variant">${esc(f.sort_order)}</td>
+            <td class="px-6 py-5 text-right">
+              <div class="flex items-center justify-end gap-2">
+                <button data-edit="${f.id}" class="p-2 text-outline hover:text-primary hover:bg-primary/5 rounded-lg transition-all" type="button" title="Edit">
+                  <span class="material-symbols-outlined text-xl">edit</span>
+                </button>
+                <button data-del="${f.id}" class="p-2 text-outline hover:text-error hover:bg-error/5 rounded-lg transition-all" type="button" title="Delete">
+                  <span class="material-symbols-outlined text-xl">delete</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `).join("");
+      }
+
+      addFeatureBtn.addEventListener("click", async ()=>{
+        const feature_text = prompt("Feature text:", "");
+        if (!feature_text) return;
+        const icon_class = prompt("Icon class (e.g. fa fa-check-circle):", "fa fa-check-circle");
+        const sort_order = prompt("Sort order (number):", "1");
+        await VulcanAdmin.apiFetch("/admin/about-features", { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ feature_text, icon_class, sort_order: Number(sort_order) }) });
+        showSuccess("Feature added.");
+        await loadFeatures();
+      });
+
+      featuresBody.addEventListener("click", async (e)=>{
+        const editBtn = e.target.closest("[data-edit]");
+        const delBtn = e.target.closest("[data-del]");
+        if (delBtn) {
+          const id = delBtn.getAttribute("data-del");
+          if (!confirm("Delete this feature?")) return;
+          await VulcanAdmin.apiFetch(`/admin/about-features/${id}`, { method:"DELETE" });
+          showSuccess("Feature deleted.");
+          await loadFeatures();
+        }
+        if (editBtn) {
+          const id = editBtn.getAttribute("data-edit");
+          const { feature } = await VulcanAdmin.apiFetch(`/admin/about-features/${id}`);
+          const feature_text = prompt("Feature text:", feature.feature_text || "");
+          if (!feature_text) return;
+          const icon_class = prompt("Icon class:", feature.icon_class || "");
+          const sort_order = prompt("Sort order:", String(feature.sort_order ?? ""));
+          await VulcanAdmin.apiFetch(`/admin/about-features/${id}`, { method:"PUT", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ feature_text, icon_class, sort_order: Number(sort_order) }) });
+          showSuccess("Feature updated.");
+          await loadFeatures();
+        }
+      });
+
+      Promise.all([loadContent(), loadFeatures()]).catch((e)=>showError(e.message || "Failed to load about admin data."));
+    })();
+  </script>
+</body>
+</html>
+

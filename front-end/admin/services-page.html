@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Services Page | Vulcan ICT CMS</title>
+
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; vertical-align: middle; }
+    .bg-gradient-primary { background: linear-gradient(135deg, #006689 0%, #06bcf9 100%); }
+  </style>
+</head>
+
+<body class="bg-[#f8f9fa] text-[#191c1d] font-body">
+    <aside id="vulcanAdminSidebar" class="h-screen w-64 fixed left-0 top-0 overflow-y-auto bg-slate-100 flex flex-col py-6 px-4 z-50"></aside>
+
+  <header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-white/80 backdrop-blur-xl z-40 border-b border-slate-200/50 flex items-center px-8">
+    <div>
+      <h2 class="text-lg font-extrabold tracking-tight font-headline">Services Page</h2>
+      <p class="text-xs text-slate-500">Edit the “Our Approach” steps and their feature tags.</p>
+    </div>
+  </header>
+
+  <main class="ml-64 mt-16 p-8 space-y-8 min-h-[calc(100vh-4rem)]">
+    <div id="alertSuccess" class="hidden rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 px-4 py-3 text-sm"></div>
+    <div id="alertError" class="hidden rounded-xl bg-red-50 border border-red-200 text-red-900 px-4 py-3 text-sm"></div>
+
+    <section class="bg-white rounded-xl shadow-sm p-6">
+      <div class="flex items-center justify-between gap-4 mb-4">
+        <div>
+          <h3 class="text-xl font-extrabold tracking-tight font-headline">Process Steps</h3>
+          <p class="text-sm text-slate-600">Controls step number, icon, title, and description.</p>
+        </div>
+        <button id="addStepBtn" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-slate-200 transition-colors">
+          Add Step
+        </button>
+      </div>
+
+      <div class="overflow-x-auto rounded-xl border border-slate-200">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-slate-50 text-slate-600 text-[11px] uppercase tracking-[0.15em] font-bold">
+              <th class="px-6 py-4">#</th>
+              <th class="px-6 py-4">Title</th>
+              <th class="px-6 py-4">Icon</th>
+              <th class="px-6 py-4">Sort</th>
+              <th class="px-6 py-4 text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="stepsBody" class="divide-y divide-slate-100"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="bg-white rounded-xl shadow-sm p-6">
+      <div class="flex items-center justify-between gap-4 mb-4">
+        <div>
+          <h3 class="text-xl font-extrabold tracking-tight font-headline">Feature Tags</h3>
+          <p class="text-sm text-slate-600">Tags shown under each step (linked by process_step_id).</p>
+        </div>
+        <button id="addFeatureBtn" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-slate-200 transition-colors">
+          Add Tag
+        </button>
+      </div>
+
+      <div class="overflow-x-auto rounded-xl border border-slate-200">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-slate-50 text-slate-600 text-[11px] uppercase tracking-[0.15em] font-bold">
+              <th class="px-6 py-4">Step</th>
+              <th class="px-6 py-4">Tag</th>
+              <th class="px-6 py-4">Sort</th>
+              <th class="px-6 py-4 text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="featuresBody" class="divide-y divide-slate-100"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="admin.js"></script>
+  <script src="shared.js"></script>
+  <script src="admin-layout.js"></script>
+  <script>
+    (function () {
+      if (!VulcanAdminUI.requireAuth()) return;
+      VulcanAdminLayout.renderSidebar("services-page");
+      VulcanAdminUI.rewriteAdminLinks();
+      VulcanAdminUI.adminLogoutLinkHandler();
+
+      const alertSuccess = document.getElementById("alertSuccess");
+      const alertError = document.getElementById("alertError");
+      function showSuccess(msg){alertError.classList.add("hidden"); alertSuccess.textContent=msg; alertSuccess.classList.remove("hidden"); setTimeout(()=>alertSuccess.classList.add("hidden"), 2500);}
+      function showError(msg){alertSuccess.classList.add("hidden"); alertError.textContent=msg||"Something went wrong."; alertError.classList.remove("hidden");}
+      function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+      const stepsBody = document.getElementById("stepsBody");
+      const featuresBody = document.getElementById("featuresBody");
+      const addStepBtn = document.getElementById("addStepBtn");
+      const addFeatureBtn = document.getElementById("addFeatureBtn");
+
+      let stepsCache = [];
+
+      async function loadSteps(){
+        const { steps } = await VulcanAdmin.apiFetch("/admin/service-process-steps");
+        stepsCache = steps || [];
+        stepsBody.innerHTML = stepsCache.map((s)=>`
+          <tr class="group hover:bg-slate-50 transition-colors">
+            <td class="px-6 py-5 font-semibold">${esc(s.step_number)}</td>
+            <td class="px-6 py-5">
+              <div class="font-semibold">${esc(s.title)}</div>
+              <div class="text-xs text-slate-500">${esc(s.description||"")}</div>
+            </td>
+            <td class="px-6 py-5 text-slate-500">${esc(s.icon_class||"")}</td>
+            <td class="px-6 py-5 text-slate-500">${esc(s.sort_order)}</td>
+            <td class="px-6 py-5 text-right">
+              <div class="flex items-center justify-end gap-2">
+                <button data-step-edit="${s.id}" class="p-2 text-slate-500 hover:text-cyan-700 hover:bg-cyan-50 rounded-lg" type="button" title="Edit">
+                  <span class="material-symbols-outlined text-xl">edit</span>
+                </button>
+                <button data-step-del="${s.id}" class="p-2 text-slate-500 hover:text-red-700 hover:bg-red-50 rounded-lg" type="button" title="Delete">
+                  <span class="material-symbols-outlined text-xl">delete</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `).join("");
+      }
+
+      async function loadFeatures(){
+        const { features } = await VulcanAdmin.apiFetch("/admin/service-process-features");
+        const list = features || [];
+        const stepName = (id)=>{
+          const s = stepsCache.find(x=>String(x.id)===String(id));
+          return s ? `${s.step_number} — ${s.title}` : `Step ${id}`;
+        };
+        featuresBody.innerHTML = list.map((f)=>`
+          <tr class="group hover:bg-slate-50 transition-colors">
+            <td class="px-6 py-5 font-semibold">${esc(stepName(f.process_step_id))}</td>
+            <td class="px-6 py-5 text-slate-700">${esc(f.feature_text)}</td>
+            <td class="px-6 py-5 text-slate-500">${esc(f.sort_order)}</td>
+            <td class="px-6 py-5 text-right">
+              <div class="flex items-center justify-end gap-2">
+                <button data-feature-edit="${f.id}" class="p-2 text-slate-500 hover:text-cyan-700 hover:bg-cyan-50 rounded-lg" type="button" title="Edit">
+                  <span class="material-symbols-outlined text-xl">edit</span>
+                </button>
+                <button data-feature-del="${f.id}" class="p-2 text-slate-500 hover:text-red-700 hover:bg-red-50 rounded-lg" type="button" title="Delete">
+                  <span class="material-symbols-outlined text-xl">delete</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `).join("");
+      }
+
+      addStepBtn.addEventListener("click", async ()=>{
+        const step_number = prompt("Step number (e.g. 01):", "");
+        if (!step_number) return;
+        const title = prompt("Title:", "");
+        if (!title) return;
+        const description = prompt("Description:", "");
+        const icon_class = prompt("Icon class (e.g. fa fa-comments):", "fa fa-check");
+        const sort_order = prompt("Sort order (number):", "1");
+        await VulcanAdmin.apiFetch("/admin/service-process-steps", { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ step_number, title, description, icon_class, sort_order: Number(sort_order) }) });
+        showSuccess("Step added.");
+        await loadSteps();
+        await loadFeatures();
+      });
+
+      stepsBody.addEventListener("click", async (e)=>{
+        const editBtn = e.target.closest("[data-step-edit]");
+        const delBtn = e.target.closest("[data-step-del]");
+        if (delBtn) {
+          const id = delBtn.getAttribute("data-step-del");
+          if (!confirm("Delete this step? (its tags will also be deleted)")) return;
+          await VulcanAdmin.apiFetch(`/admin/service-process-steps/${id}`, { method:"DELETE" });
+          showSuccess("Step deleted.");
+          await loadSteps();
+          await loadFeatures();
+        }
+        if (editBtn) {
+          const id = editBtn.getAttribute("data-step-edit");
+          const { step } = await VulcanAdmin.apiFetch(`/admin/service-process-steps/${id}`);
+          const step_number = prompt("Step number:", step.step_number || "");
+          if (!step_number) return;
+          const title = prompt("Title:", step.title || "");
+          if (!title) return;
+          const description = prompt("Description:", step.description || "");
+          const icon_class = prompt("Icon class:", step.icon_class || "");
+          const sort_order = prompt("Sort order:", String(step.sort_order ?? ""));
+          await VulcanAdmin.apiFetch(`/admin/service-process-steps/${id}`, { method:"PUT", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ step_number, title, description, icon_class, sort_order: Number(sort_order) }) });
+          showSuccess("Step updated.");
+          await loadSteps();
+          await loadFeatures();
+        }
+      });
+
+      addFeatureBtn.addEventListener("click", async ()=>{
+        if (!stepsCache.length) await loadSteps();
+        const options = stepsCache.map(s=>`${s.id}: ${s.step_number} — ${s.title}`).join("\\n");
+        const process_step_id = prompt(`process_step_id\\nChoose one of:\\n${options}`, stepsCache[0]?.id || "");
+        if (!process_step_id) return;
+        const feature_text = prompt("Tag text:", "");
+        if (!feature_text) return;
+        const sort_order = prompt("Sort order (number):", "1");
+        await VulcanAdmin.apiFetch("/admin/service-process-features", { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ process_step_id: Number(process_step_id), feature_text, sort_order: Number(sort_order) }) });
+        showSuccess("Tag added.");
+        await loadFeatures();
+      });
+
+      featuresBody.addEventListener("click", async (e)=>{
+        const editBtn = e.target.closest("[data-feature-edit]");
+        const delBtn = e.target.closest("[data-feature-del]");
+        if (delBtn) {
+          const id = delBtn.getAttribute("data-feature-del");
+          if (!confirm("Delete this tag?")) return;
+          await VulcanAdmin.apiFetch(`/admin/service-process-features/${id}`, { method:"DELETE" });
+          showSuccess("Tag deleted.");
+          await loadFeatures();
+        }
+        if (editBtn) {
+          const id = editBtn.getAttribute("data-feature-edit");
+          const { feature } = await VulcanAdmin.apiFetch(`/admin/service-process-features/${id}`);
+          if (!stepsCache.length) await loadSteps();
+          const options = stepsCache.map(s=>`${s.id}: ${s.step_number} — ${s.title}`).join("\\n");
+          const process_step_id = prompt(`process_step_id\\nChoose one of:\\n${options}`, feature.process_step_id);
+          if (!process_step_id) return;
+          const feature_text = prompt("Tag text:", feature.feature_text || "");
+          if (!feature_text) return;
+          const sort_order = prompt("Sort order:", String(feature.sort_order ?? ""));
+          await VulcanAdmin.apiFetch(`/admin/service-process-features/${id}`, { method:"PUT", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ process_step_id: Number(process_step_id), feature_text, sort_order: Number(sort_order) }) });
+          showSuccess("Tag updated.");
+          await loadFeatures();
+        }
+      });
+
+      Promise.resolve()
+        .then(loadSteps)
+        .then(loadFeatures)
+        .catch((e)=>showError(e.message || "Failed to load services page admin data."));
+    })();
+  </script>
+</body>
+</html>
+

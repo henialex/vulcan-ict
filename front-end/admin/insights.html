@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Insights | Vulcan ICT CMS</title>
+
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-fixed": "#2c1700",
+            "outline": "#6d7980",
+            "surface-dim": "#d9dadb",
+            "on-primary-fixed": "#001e2c",
+            "surface-container-high": "#e7e8e9",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed": "#ffdcbc",
+            "tertiary-container": "#f59a24",
+            "inverse-surface": "#2e3132",
+            "secondary-fixed-dim": "#a0cce7",
+            "inverse-on-surface": "#f0f1f2",
+            "surface-container": "#edeeef",
+            "inverse-primary": "#78d1ff",
+            "surface-container-highest": "#e1e3e4",
+            "primary-container": "#06bcf9",
+            "background": "#f8f9fa",
+            "error": "#ba1a1a",
+            "on-secondary-fixed-variant": "#1c4c62",
+            "on-secondary-container": "#3a667d",
+            "primary-fixed": "#c2e8ff",
+            "on-surface": "#191c1d",
+            "on-secondary": "#ffffff",
+            "on-primary-fixed-variant": "#004d68",
+            "on-primary": "#ffffff",
+            "outline-variant": "#bcc8d1",
+            "surface-bright": "#f8f9fa",
+            "surface": "#f8f9fa",
+            "error-container": "#ffdad6",
+            "secondary": "#37637b",
+            "primary": "#006689",
+            "tertiary-fixed-dim": "#ffb86c",
+            "on-background": "#191c1d",
+            "on-surface-variant": "#3d484f",
+            "surface-variant": "#e1e3e4",
+            "surface-container-low": "#f3f4f5",
+            "on-primary-container": "#004862",
+            "on-error": "#ffffff",
+            "on-secondary-fixed": "#001e2c",
+            "primary-fixed-dim": "#78d1ff",
+            "secondary-container": "#b6e3fe",
+            "on-tertiary-fixed-variant": "#683c00",
+            "surface-tint": "#006689",
+            "on-tertiary-container": "#623800",
+            "on-error-container": "#93000a",
+            "secondary-fixed": "#c2e8ff",
+            "tertiary": "#895100",
+            "on-tertiary": "#ffffff"
+          }
+        },
+      },
+    }
+  </script>
+
+  <style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+    .bg-gradient-primary { background: linear-gradient(135deg, #006689 0%, #06bcf9 100%); }
+  </style>
+</head>
+
+<body class="bg-background text-on-surface font-body">
+    <aside id="vulcanAdminSidebar" class="h-screen w-64 fixed left-0 top-0 overflow-y-auto bg-slate-100 flex flex-col py-6 px-4 z-50"></aside>
+
+  <header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl z-40 border-b border-slate-200/50 dark:border-slate-800/50 flex justify-between items-center px-8">
+    <div class="flex items-center gap-4 flex-1">
+      <div class="relative w-full max-w-md">
+        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+        <input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-sm focus:ring-2 focus:ring-primary-container focus:bg-surface-container-lowest transition-all" placeholder="Search insights..." type="text"/>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-6">
+      <a href="/admin/add-insight" class="bg-gradient-primary text-white px-6 py-3 rounded-xl flex items-center gap-2 font-bold shadow-lg shadow-primary/20 hover:-translate-y-1 transition-all">
+        <span class="material-symbols-outlined">add</span>
+        Add Insight
+      </a>
+    </div>
+  </header>
+
+  <main class="ml-64 mt-16 p-8 min-h-[calc(100vh-4rem)]">
+    <!-- Insights page header content (public page copy) -->
+    <section class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-transparent mb-8">
+      <div class="p-8 border-b border-surface-container">
+        <div class="flex items-start justify-between gap-6">
+          <div>
+            <h3 class="text-xl font-extrabold tracking-tight font-headline text-on-surface">Insights Page Header</h3>
+            <p class="text-on-surface-variant mt-1 text-sm max-w-2xl">Controls the banner and intro text on the public insights page.</p>
+          </div>
+          <button id="saveInsightsPage" class="bg-gradient-primary text-white px-6 py-3 rounded-xl flex items-center gap-2 font-bold shadow-lg shadow-primary/20 hover:-translate-y-1 transition-all">
+            <span class="material-symbols-outlined">save</span>
+            Save
+          </button>
+        </div>
+      </div>
+      <div class="p-8">
+        <div id="pageAlertSuccess" class="hidden rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 px-4 py-3 text-sm mb-4"></div>
+        <div id="pageAlertError" class="hidden rounded-xl bg-red-50 border border-red-200 text-red-900 px-4 py-3 text-sm mb-4"></div>
+
+        <input type="hidden" id="insightsPageId" />
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div class="lg:col-span-2">
+            <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Banner Title</label>
+            <input id="banner_title" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Eyebrow</label>
+            <input id="eyebrow_text" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Helper Box Title</label>
+            <input id="helper_box_title" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" />
+          </div>
+          <div class="lg:col-span-2">
+            <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Intro Title</label>
+            <input id="intro_title" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" />
+          </div>
+          <div class="lg:col-span-2">
+            <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Intro Description</label>
+            <textarea id="intro_description" rows="2" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest"></textarea>
+          </div>
+          <div class="lg:col-span-2">
+            <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Helper Box Text</label>
+            <textarea id="helper_box_text" rows="2" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest"></textarea>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+      <div>
+        <nav class="flex items-center gap-2 text-xs text-outline mb-2 uppercase tracking-widest font-semibold">
+          <span>Admin</span>
+          <span class="material-symbols-outlined text-[10px]">chevron_right</span>
+          <span class="text-primary">Insights</span>
+        </nav>
+
+        <h2 class="text-4xl font-extrabold tracking-tight font-headline text-on-surface">Insights Directory</h2>
+        <p class="text-on-surface-variant mt-2 max-w-xl">Create and manage website insight posts (published and drafts).</p>
+      </div>
+    </div>
+
+    <section class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-transparent">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-surface-container-low text-on-surface-variant text-[11px] uppercase tracking-[0.15em] font-bold">
+              <th class="px-8 py-4">Title</th>
+              <th class="px-8 py-4">Slug</th>
+              <th class="px-8 py-4">Tag</th>
+              <th class="px-8 py-4">Status</th>
+              <th class="px-8 py-4 text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="insightsBody" class="divide-y divide-surface-container"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="admin.js"></script>
+  <script src="shared.js"></script>
+  <script src="admin-layout.js"></script>
+  <script>
+    (function () {
+      if (!VulcanAdminUI.requireAuth()) return;
+      VulcanAdminLayout.renderSidebar("insights");
+      VulcanAdminUI.rewriteAdminLinks();
+      VulcanAdminUI.adminLogoutLinkHandler();
+
+      // Insights page header content
+      const pageAlertSuccess = document.getElementById("pageAlertSuccess");
+      const pageAlertError = document.getElementById("pageAlertError");
+      const saveInsightsPageBtn = document.getElementById("saveInsightsPage");
+      const insightsPageId = document.getElementById("insightsPageId");
+
+      function showPageSuccess(msg) {
+        pageAlertError.classList.add("hidden");
+        pageAlertSuccess.textContent = msg;
+        pageAlertSuccess.classList.remove("hidden");
+        setTimeout(() => pageAlertSuccess.classList.add("hidden"), 2500);
+      }
+      function showPageError(msg) {
+        pageAlertSuccess.classList.add("hidden");
+        pageAlertError.textContent = msg || "Something went wrong.";
+        pageAlertError.classList.remove("hidden");
+      }
+
+      const pageFields = [
+        "banner_title",
+        "eyebrow_text",
+        "intro_title",
+        "intro_description",
+        "helper_box_title",
+        "helper_box_text",
+      ];
+
+      function fillPageForm(content) {
+        insightsPageId.value = content && content.id ? content.id : "";
+        pageFields.forEach((k) => {
+          document.getElementById(k).value = content && content[k] != null ? content[k] : "";
+        });
+      }
+
+      function getPagePayload() {
+        const p = {};
+        pageFields.forEach((k) => (p[k] = document.getElementById(k).value));
+        return p;
+      }
+
+      async function loadInsightsPageContent() {
+        const { content } = await VulcanAdmin.apiFetch("/admin/insights-page-content");
+        fillPageForm(content);
+      }
+
+      saveInsightsPageBtn.addEventListener("click", async () => {
+        try {
+          saveInsightsPageBtn.disabled = true;
+          const payload = getPagePayload();
+          if (!payload.banner_title) return showPageError("Banner Title is required.");
+
+          const id = insightsPageId.value;
+          if (id) {
+            await VulcanAdmin.apiFetch(`/admin/insights-page-content/${encodeURIComponent(id)}`, {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload),
+            });
+            showPageSuccess("Insights page header updated.");
+          } else {
+            const res = await VulcanAdmin.apiFetch("/admin/insights-page-content", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload),
+            });
+            insightsPageId.value = res.id;
+            showPageSuccess("Insights page header created.");
+          }
+        } catch (e) {
+          showPageError(e.message || "Failed saving insights page header.");
+        } finally {
+          saveInsightsPageBtn.disabled = false;
+        }
+      });
+
+      const body = document.getElementById("insightsBody");
+      function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+
+      async function load() {
+        const { insights } = await VulcanAdmin.apiFetch("/admin/insights");
+        body.innerHTML = (insights || []).map((insight) => `
+          <tr class="group hover:bg-surface-container-low/30 transition-colors">
+            <td class="px-8 py-6">
+              <div class="font-semibold text-on-surface">${esc(insight.title)}</div>
+              <div class="text-xs text-on-surface-variant">${esc(insight.excerpt || "")}</div>
+            </td>
+            <td class="px-8 py-6 text-sm text-on-surface-variant">${esc(insight.slug)}</td>
+            <td class="px-8 py-6">
+              <span class="px-3 py-1 bg-surface-container-high rounded-full text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">
+                ${esc(insight.tag || "-")}
+              </span>
+            </td>
+            <td class="px-8 py-6">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full ${String(insight.is_published) === '1' ? 'bg-emerald-500' : 'bg-amber-500'}"></span>
+                <span class="text-sm font-medium">${String(insight.is_published) === '1' ? 'Published' : 'Draft'}</span>
+              </div>
+            </td>
+            <td class="px-8 py-6 text-right">
+              <div class="flex items-center justify-end gap-2">
+                <a class="p-2 text-outline hover:text-primary hover:bg-primary/5 rounded-lg transition-all" href="/admin/edit-insight/${insight.id}" title="Edit Insight">
+                  <span class="material-symbols-outlined text-xl">edit</span>
+                </a>
+                <button data-del="${insight.id}" class="p-2 text-outline hover:text-error hover:bg-error/5 rounded-lg transition-all" title="Delete Insight" type="button">
+                  <span class="material-symbols-outlined text-xl">delete</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `).join("");
+
+        VulcanAdminUI.rewriteAdminLinks();
+      }
+
+      body.addEventListener("click", async (e) => {
+        const btn = e.target.closest("[data-del]");
+        if (!btn) return;
+        const id = btn.getAttribute("data-del");
+        if (!confirm("Delete this insight?")) return;
+        await VulcanAdmin.apiFetch(`/admin/insights/${id}`, { method: "DELETE" });
+        await load();
+      });
+
+      Promise.all([loadInsightsPageContent(), load()]).catch(console.error);
+    })();
+  </script>
+</body>
+</html>
+

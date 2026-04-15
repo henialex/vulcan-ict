@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Home Page | Vulcan ICT CMS</title>
+
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-fixed": "#2c1700",
+            "outline": "#6d7980",
+            "surface-dim": "#d9dadb",
+            "on-primary-fixed": "#001e2c",
+            "surface-container-high": "#e7e8e9",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed": "#ffdcbc",
+            "tertiary-container": "#f59a24",
+            "inverse-surface": "#2e3132",
+            "secondary-fixed-dim": "#a0cce7",
+            "inverse-on-surface": "#f0f1f2",
+            "surface-container": "#edeeef",
+            "inverse-primary": "#78d1ff",
+            "surface-container-highest": "#e1e3e4",
+            "primary-container": "#06bcf9",
+            "background": "#f8f9fa",
+            "error": "#ba1a1a",
+            "on-secondary-fixed-variant": "#1c4c62",
+            "on-secondary-container": "#3a667d",
+            "primary-fixed": "#c2e8ff",
+            "on-surface": "#191c1d",
+            "on-secondary": "#ffffff",
+            "on-primary-fixed-variant": "#004d68",
+            "on-primary": "#ffffff",
+            "outline-variant": "#bcc8d1",
+            "surface-bright": "#f8f9fa",
+            "surface": "#f8f9fa",
+            "error-container": "#ffdad6",
+            "secondary": "#37637b",
+            "primary": "#006689",
+            "tertiary-fixed-dim": "#ffb86c",
+            "on-background": "#191c1d",
+            "on-surface-variant": "#3d484f",
+            "surface-variant": "#e1e3e4",
+            "surface-container-low": "#f3f4f5",
+            "on-primary-container": "#004862",
+            "on-error": "#ffffff",
+            "on-secondary-fixed": "#001e2c",
+            "primary-fixed-dim": "#78d1ff",
+            "secondary-container": "#b6e3fe",
+            "on-tertiary-fixed-variant": "#683c00",
+            "surface-tint": "#006689",
+            "on-tertiary-container": "#623800",
+            "on-error-container": "#93000a",
+            "secondary-fixed": "#c2e8ff",
+            "tertiary": "#895100",
+            "on-tertiary": "#ffffff"
+          }
+        },
+      },
+    }
+  </script>
+
+  <style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; vertical-align: middle; }
+    .bg-gradient-primary { background: linear-gradient(135deg, #006689 0%, #06bcf9 100%); }
+  </style>
+</head>
+
+<body class="bg-background text-on-surface font-body selection:bg-primary-fixed">
+    <aside id="vulcanAdminSidebar" class="h-screen w-64 fixed left-0 top-0 overflow-y-auto bg-slate-100 flex flex-col py-6 px-4 z-50"></aside>
+
+  <header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl z-40 border-b border-slate-200/50 dark:border-slate-800/50 flex justify-between items-center px-8">
+    <div class="flex items-center gap-4 flex-1">
+      <div>
+        <h2 class="text-lg font-extrabold tracking-tight font-headline">Home Page</h2>
+        <p class="text-xs text-on-surface-variant">Edit homepage hero, stats, and “Why Choose” items.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="ml-64 mt-16 p-8 min-h-[calc(100vh-4rem)] space-y-8">
+    <!-- Alerts -->
+    <div id="alertSuccess" class="hidden rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 px-4 py-3 text-sm"></div>
+    <div id="alertError" class="hidden rounded-xl bg-red-50 border border-red-200 text-red-900 px-4 py-3 text-sm"></div>
+
+    <!-- HERO / CTA -->
+    <section class="bg-surface-container-lowest rounded-xl shadow-sm border border-transparent p-6">
+      <div class="flex items-center justify-between gap-4 mb-4">
+        <div>
+          <h3 class="text-xl font-extrabold tracking-tight font-headline">Hero & CTA</h3>
+          <p class="text-sm text-on-surface-variant">Controls the main banner and the bottom call-to-action on the homepage.</p>
+        </div>
+        <button id="saveHomeContent" class="bg-gradient-primary text-white px-5 py-2.5 rounded-xl font-bold shadow-lg shadow-primary/20 hover:-translate-y-0.5 transition-all">
+          Save
+        </button>
+      </div>
+
+      <form id="homeContentForm" class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <input type="hidden" id="homeContentId" />
+
+        <div class="lg:col-span-2">
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Hero Title</label>
+          <input id="hero_title" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" placeholder="Hero title" required />
+        </div>
+
+        <div class="lg:col-span-2">
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Hero Subtitle</label>
+          <textarea id="hero_subtitle" rows="3" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" placeholder="Hero subtitle"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Hero Button 1 Text</label>
+          <input id="hero_button1_text" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" placeholder="Discuss Your Project" />
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Hero Button 1 Link</label>
+          <input id="hero_button1_link" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" placeholder="contact.html" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Hero Button 2 Text</label>
+          <input id="hero_button2_text" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" placeholder="Explore Our Capabilities" />
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Hero Button 2 Link</label>
+          <input id="hero_button2_link" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" placeholder="services.html" />
+        </div>
+
+        <div class="lg:col-span-2 border-t border-surface-container-highest pt-5"></div>
+
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Why Title</label>
+          <input id="why_title" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" placeholder="Why Choose Vulcan" />
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Why Description</label>
+          <input id="why_description" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" placeholder="Short description..." />
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">AI Showcase Title</label>
+          <input id="ai_showcase_title" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" placeholder="AI-Powered Digital Transformation" />
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">AI Showcase Description</label>
+          <input id="ai_showcase_description" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" placeholder="Short description..." />
+        </div>
+
+        <div class="lg:col-span-2 border-t border-surface-container-highest pt-5"></div>
+
+        <div class="lg:col-span-2">
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Home CTA Title</label>
+          <input id="home_cta_title" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" placeholder="Ready to Build..." />
+        </div>
+        <div class="lg:col-span-2">
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Home CTA Description</label>
+          <textarea id="home_cta_description" rows="3" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" placeholder="CTA description..."></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">CTA Button 1 Text</label>
+          <input id="home_cta_button1_text" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" />
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">CTA Button 1 Link</label>
+          <input id="home_cta_button1_link" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">CTA Button 2 Text</label>
+          <input id="home_cta_button2_text" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" />
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">CTA Button 2 Link</label>
+          <input id="home_cta_button2_link" class="w-full rounded-xl border-outline-variant bg-surface-container-lowest" />
+        </div>
+      </form>
+    </section>
+
+    <!-- STATS -->
+    <section class="bg-surface-container-lowest rounded-xl shadow-sm border border-transparent p-6">
+      <div class="flex items-center justify-between gap-4 mb-4">
+        <div>
+          <h3 class="text-xl font-extrabold tracking-tight font-headline">Stats</h3>
+          <p class="text-sm text-on-surface-variant">Controls the numbers section on the homepage.</p>
+        </div>
+        <button id="addStatBtn" class="px-4 py-2.5 rounded-xl font-bold bg-surface-container-high hover:bg-surface-container-highest transition-colors">
+          Add Stat
+        </button>
+      </div>
+
+      <div class="overflow-x-auto rounded-xl border border-surface-container-highest">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-surface-container-low text-on-surface-variant text-[11px] uppercase tracking-[0.15em] font-bold">
+              <th class="px-6 py-4">Number</th>
+              <th class="px-6 py-4">Label</th>
+              <th class="px-6 py-4">Sort</th>
+              <th class="px-6 py-4 text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="statsBody" class="divide-y divide-surface-container"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- WHY ITEMS -->
+    <section class="bg-surface-container-lowest rounded-xl shadow-sm border border-transparent p-6">
+      <div class="flex items-center justify-between gap-4 mb-4">
+        <div>
+          <h3 class="text-xl font-extrabold tracking-tight font-headline">Why Choose Items</h3>
+          <p class="text-sm text-on-surface-variant">Controls the icon + title + description list on the homepage.</p>
+        </div>
+        <button id="addWhyBtn" class="px-4 py-2.5 rounded-xl font-bold bg-surface-container-high hover:bg-surface-container-highest transition-colors">
+          Add Item
+        </button>
+      </div>
+
+      <div class="overflow-x-auto rounded-xl border border-surface-container-highest">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-surface-container-low text-on-surface-variant text-[11px] uppercase tracking-[0.15em] font-bold">
+              <th class="px-6 py-4">Title</th>
+              <th class="px-6 py-4">Icon</th>
+              <th class="px-6 py-4">Sort</th>
+              <th class="px-6 py-4 text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="whyBody" class="divide-y divide-surface-container"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="admin.js"></script>
+  <script src="shared.js"></script>
+  <script src="admin-layout.js"></script>
+  <script>
+    (function () {
+      if (!VulcanAdminUI.requireAuth()) return;
+      VulcanAdminLayout.renderSidebar("home");
+      VulcanAdminUI.rewriteAdminLinks();
+      VulcanAdminUI.adminLogoutLinkHandler();
+
+      const alertSuccess = document.getElementById("alertSuccess");
+      const alertError = document.getElementById("alertError");
+
+      function showSuccess(msg) {
+        alertError.classList.add("hidden");
+        alertSuccess.textContent = msg;
+        alertSuccess.classList.remove("hidden");
+        setTimeout(() => alertSuccess.classList.add("hidden"), 2500);
+      }
+      function showError(msg) {
+        alertSuccess.classList.add("hidden");
+        alertError.textContent = msg || "Something went wrong.";
+        alertError.classList.remove("hidden");
+      }
+      function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+      const homeContentId = document.getElementById("homeContentId");
+      const saveHomeContentBtn = document.getElementById("saveHomeContent");
+
+      const fields = [
+        "hero_title","hero_subtitle","hero_button1_text","hero_button1_link","hero_button2_text","hero_button2_link",
+        "why_title","why_description","ai_showcase_title","ai_showcase_description",
+        "home_cta_title","home_cta_description","home_cta_button1_text","home_cta_button1_link","home_cta_button2_text","home_cta_button2_link"
+      ];
+
+      function getHomePayload() {
+        const payload = {};
+        fields.forEach((k) => payload[k] = document.getElementById(k).value);
+        return payload;
+      }
+
+      function fillHomeForm(content) {
+        homeContentId.value = content && content.id ? content.id : "";
+        fields.forEach((k) => {
+          const el = document.getElementById(k);
+          el.value = (content && content[k] != null) ? content[k] : "";
+        });
+      }
+
+      async function loadHomeContent() {
+        const { content } = await VulcanAdmin.apiFetch("/admin/home-page-content");
+        fillHomeForm(content);
+      }
+
+      saveHomeContentBtn.addEventListener("click", async () => {
+        try {
+          saveHomeContentBtn.disabled = true;
+          const payload = getHomePayload();
+          if (!payload.hero_title) return showError("Hero Title is required.");
+
+          const id = homeContentId.value;
+          if (id) {
+            await VulcanAdmin.apiFetch(`/admin/home-page-content/${encodeURIComponent(id)}`, {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload),
+            });
+            showSuccess("Home content updated.");
+          } else {
+            const res = await VulcanAdmin.apiFetch("/admin/home-page-content", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload),
+            });
+            homeContentId.value = res.id;
+            showSuccess("Home content created.");
+          }
+        } catch (e) {
+          showError(e.message || "Failed saving home content.");
+        } finally {
+          saveHomeContentBtn.disabled = false;
+        }
+      });
+
+      // Stats CRUD (prompt-based for speed)
+      const statsBody = document.getElementById("statsBody");
+      const addStatBtn = document.getElementById("addStatBtn");
+
+      async function loadStats() {
+        const { stats } = await VulcanAdmin.apiFetch("/admin/home-stats");
+        statsBody.innerHTML = (stats || []).map((s) => `
+          <tr class="group hover:bg-surface-container-low/30 transition-colors">
+            <td class="px-6 py-5 font-semibold">${esc(s.stat_number)}</td>
+            <td class="px-6 py-5 text-on-surface-variant">${esc(s.stat_label)}</td>
+            <td class="px-6 py-5 text-on-surface-variant">${esc(s.sort_order)}</td>
+            <td class="px-6 py-5 text-right">
+              <div class="flex items-center justify-end gap-2">
+                <button data-stat-edit="${s.id}" class="p-2 text-outline hover:text-primary hover:bg-primary/5 rounded-lg transition-all" type="button" title="Edit">
+                  <span class="material-symbols-outlined text-xl">edit</span>
+                </button>
+                <button data-stat-del="${s.id}" class="p-2 text-outline hover:text-error hover:bg-error/5 rounded-lg transition-all" type="button" title="Delete">
+                  <span class="material-symbols-outlined text-xl">delete</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `).join("");
+      }
+
+      addStatBtn.addEventListener("click", async () => {
+        const stat_number = prompt("Stat number (e.g. 18+):", "");
+        if (!stat_number) return;
+        const stat_label = prompt("Stat label (e.g. Systems Deployed):", "");
+        if (!stat_label) return;
+        const sort_order = prompt("Sort order (number):", "1");
+        await VulcanAdmin.apiFetch("/admin/home-stats", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ stat_number, stat_label, sort_order: Number(sort_order) }),
+        });
+        showSuccess("Stat added.");
+        await loadStats();
+      });
+
+      statsBody.addEventListener("click", async (e) => {
+        const editBtn = e.target.closest("[data-stat-edit]");
+        const delBtn = e.target.closest("[data-stat-del]");
+        if (delBtn) {
+          const id = delBtn.getAttribute("data-stat-del");
+          if (!confirm("Delete this stat?")) return;
+          await VulcanAdmin.apiFetch(`/admin/home-stats/${id}`, { method: "DELETE" });
+          showSuccess("Stat deleted.");
+          await loadStats();
+        }
+        if (editBtn) {
+          const id = editBtn.getAttribute("data-stat-edit");
+          const { stat } = await VulcanAdmin.apiFetch(`/admin/home-stats/${id}`);
+          const stat_number = prompt("Stat number:", stat.stat_number || "");
+          if (!stat_number) return;
+          const stat_label = prompt("Stat label:", stat.stat_label || "");
+          if (!stat_label) return;
+          const sort_order = prompt("Sort order:", String(stat.sort_order ?? ""));
+          await VulcanAdmin.apiFetch(`/admin/home-stats/${id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ stat_number, stat_label, sort_order: Number(sort_order) }),
+          });
+          showSuccess("Stat updated.");
+          await loadStats();
+        }
+      });
+
+      // Why items CRUD (prompt-based for speed)
+      const whyBody = document.getElementById("whyBody");
+      const addWhyBtn = document.getElementById("addWhyBtn");
+
+      async function loadWhy() {
+        const { items } = await VulcanAdmin.apiFetch("/admin/home-why-items");
+        whyBody.innerHTML = (items || []).map((it) => `
+          <tr class="group hover:bg-surface-container-low/30 transition-colors">
+            <td class="px-6 py-5">
+              <div class="font-semibold">${esc(it.title)}</div>
+              <div class="text-xs text-on-surface-variant">${esc(it.description || "")}</div>
+            </td>
+            <td class="px-6 py-5 text-on-surface-variant">${esc(it.icon_class || "")}</td>
+            <td class="px-6 py-5 text-on-surface-variant">${esc(it.sort_order)}</td>
+            <td class="px-6 py-5 text-right">
+              <div class="flex items-center justify-end gap-2">
+                <button data-why-edit="${it.id}" class="p-2 text-outline hover:text-primary hover:bg-primary/5 rounded-lg transition-all" type="button" title="Edit">
+                  <span class="material-symbols-outlined text-xl">edit</span>
+                </button>
+                <button data-why-del="${it.id}" class="p-2 text-outline hover:text-error hover:bg-error/5 rounded-lg transition-all" type="button" title="Delete">
+                  <span class="material-symbols-outlined text-xl">delete</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `).join("");
+      }
+
+      addWhyBtn.addEventListener("click", async () => {
+        const title = prompt("Title:", "");
+        if (!title) return;
+        const description = prompt("Description:", "");
+        const icon_class = prompt("Icon class (e.g. fa fa-building):", "fa fa-check");
+        const sort_order = prompt("Sort order (number):", "1");
+        await VulcanAdmin.apiFetch("/admin/home-why-items", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ title, description, icon_class, sort_order: Number(sort_order) }),
+        });
+        showSuccess("Item added.");
+        await loadWhy();
+      });
+
+      whyBody.addEventListener("click", async (e) => {
+        const editBtn = e.target.closest("[data-why-edit]");
+        const delBtn = e.target.closest("[data-why-del]");
+        if (delBtn) {
+          const id = delBtn.getAttribute("data-why-del");
+          if (!confirm("Delete this item?")) return;
+          await VulcanAdmin.apiFetch(`/admin/home-why-items/${id}`, { method: "DELETE" });
+          showSuccess("Item deleted.");
+          await loadWhy();
+        }
+        if (editBtn) {
+          const id = editBtn.getAttribute("data-why-edit");
+          const { item } = await VulcanAdmin.apiFetch(`/admin/home-why-items/${id}`);
+          const title = prompt("Title:", item.title || "");
+          if (!title) return;
+          const description = prompt("Description:", item.description || "");
+          const icon_class = prompt("Icon class:", item.icon_class || "");
+          const sort_order = prompt("Sort order:", String(item.sort_order ?? ""));
+          await VulcanAdmin.apiFetch(`/admin/home-why-items/${id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ title, description, icon_class, sort_order: Number(sort_order) }),
+          });
+          showSuccess("Item updated.");
+          await loadWhy();
+        }
+      });
+
+      Promise.all([loadHomeContent(), loadStats(), loadWhy()]).catch((e) => {
+        showError(e.message || "Failed to load home admin data.");
+      });
+    })();
+  </script>
+</body>
+</html>
+

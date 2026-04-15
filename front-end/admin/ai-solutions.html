@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>AI Solutions Page | Vulcan ICT CMS</title>
+
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; vertical-align: middle; }
+    .bg-gradient-primary { background: linear-gradient(135deg, #006689 0%, #06bcf9 100%); }
+  </style>
+</head>
+
+<body class="bg-[#f8f9fa] text-[#191c1d] font-body">
+    <aside id="vulcanAdminSidebar" class="h-screen w-64 fixed left-0 top-0 overflow-y-auto bg-slate-100 flex flex-col py-6 px-4 z-50"></aside>
+
+  <header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-white/80 backdrop-blur-xl z-40 border-b border-slate-200/50 flex items-center px-8">
+    <div>
+      <h2 class="text-lg font-extrabold tracking-tight font-headline">AI Solutions Page</h2>
+      <p class="text-xs text-slate-500">Edit page header/CTA and AI feature cards.</p>
+    </div>
+  </header>
+
+  <main class="ml-64 mt-16 p-8 space-y-8 min-h-[calc(100vh-4rem)]">
+    <div id="alertSuccess" class="hidden rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 px-4 py-3 text-sm"></div>
+    <div id="alertError" class="hidden rounded-xl bg-red-50 border border-red-200 text-red-900 px-4 py-3 text-sm"></div>
+
+    <section class="bg-white rounded-xl shadow-sm p-6">
+      <div class="flex items-center justify-between gap-4 mb-4">
+        <div>
+          <h3 class="text-xl font-extrabold tracking-tight font-headline">Page Content</h3>
+          <p class="text-sm text-slate-600">Banner + section text + CTA button.</p>
+        </div>
+        <button id="saveAiContent" class="bg-gradient-primary text-white px-5 py-2.5 rounded-xl font-bold shadow-lg shadow-cyan-500/10">
+          Save
+        </button>
+      </div>
+
+      <form class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <input type="hidden" id="aiContentId" />
+
+        <div class="lg:col-span-2">
+          <label class="block text-xs font-bold uppercase tracking-widest text-slate-600 mb-1">Banner Title</label>
+          <input id="banner_title" class="w-full rounded-xl border-slate-200 bg-white" required />
+        </div>
+        <div class="lg:col-span-2">
+          <label class="block text-xs font-bold uppercase tracking-widest text-slate-600 mb-1">Section Title</label>
+          <input id="section_title" class="w-full rounded-xl border-slate-200 bg-white" />
+        </div>
+        <div class="lg:col-span-2">
+          <label class="block text-xs font-bold uppercase tracking-widest text-slate-600 mb-1">Lead Text</label>
+          <input id="lead_text" class="w-full rounded-xl border-slate-200 bg-white" />
+        </div>
+        <div class="lg:col-span-2">
+          <label class="block text-xs font-bold uppercase tracking-widest text-slate-600 mb-1">Description</label>
+          <textarea id="description" rows="3" class="w-full rounded-xl border-slate-200 bg-white"></textarea>
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-slate-600 mb-1">CTA Button Text</label>
+          <input id="cta_button_text" class="w-full rounded-xl border-slate-200 bg-white" />
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-slate-600 mb-1">CTA Button Link</label>
+          <input id="cta_button_link" class="w-full rounded-xl border-slate-200 bg-white" placeholder="contact.html" />
+        </div>
+      </form>
+    </section>
+
+    <section class="bg-white rounded-xl shadow-sm p-6">
+      <div class="flex items-center justify-between gap-4 mb-4">
+        <div>
+          <h3 class="text-xl font-extrabold tracking-tight font-headline">AI Feature Cards</h3>
+          <p class="text-sm text-slate-600">Controls the cards (image + title + description).</p>
+        </div>
+        <button id="addAiFeatureBtn" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-slate-200 transition-colors">
+          Add Card
+        </button>
+      </div>
+
+      <div class="overflow-x-auto rounded-xl border border-slate-200">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-slate-50 text-slate-600 text-[11px] uppercase tracking-[0.15em] font-bold">
+              <th class="px-6 py-4">Title</th>
+              <th class="px-6 py-4">Image</th>
+              <th class="px-6 py-4">Sort</th>
+              <th class="px-6 py-4 text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="aiFeaturesBody" class="divide-y divide-slate-100"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="admin.js"></script>
+  <script src="shared.js"></script>
+  <script src="admin-layout.js"></script>
+  <script>
+    (function () {
+      if (!VulcanAdminUI.requireAuth()) return;
+      VulcanAdminLayout.renderSidebar("ai-solutions");
+      VulcanAdminUI.rewriteAdminLinks();
+      VulcanAdminUI.adminLogoutLinkHandler();
+
+      const alertSuccess = document.getElementById("alertSuccess");
+      const alertError = document.getElementById("alertError");
+      function showSuccess(msg){alertError.classList.add("hidden"); alertSuccess.textContent=msg; alertSuccess.classList.remove("hidden"); setTimeout(()=>alertSuccess.classList.add("hidden"), 2500);}
+      function showError(msg){alertSuccess.classList.add("hidden"); alertError.textContent=msg||"Something went wrong."; alertError.classList.remove("hidden");}
+      function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+      const aiContentId = document.getElementById("aiContentId");
+      const saveAiContentBtn = document.getElementById("saveAiContent");
+      const contentFields = ["banner_title","section_title","lead_text","description","cta_button_text","cta_button_link"];
+
+      function fillContent(c){
+        aiContentId.value = c && c.id ? c.id : "";
+        contentFields.forEach((k)=>{ document.getElementById(k).value = (c && c[k]!=null) ? c[k] : ""; });
+      }
+      function payloadContent(){
+        const p={}; contentFields.forEach((k)=>p[k]=document.getElementById(k).value); return p;
+      }
+
+      async function loadContent(){
+        const { content } = await VulcanAdmin.apiFetch("/admin/ai-page-content");
+        fillContent(content);
+      }
+
+      saveAiContentBtn.addEventListener("click", async ()=>{
+        try{
+          saveAiContentBtn.disabled=true;
+          const payload = payloadContent();
+          if (!payload.banner_title) return showError("Banner Title is required.");
+          const id = aiContentId.value;
+          if (id) {
+            await VulcanAdmin.apiFetch(`/admin/ai-page-content/${encodeURIComponent(id)}`, { method:"PUT", headers:{ "Content-Type":"application/json" }, body: JSON.stringify(payload) });
+            showSuccess("AI page content updated.");
+          } else {
+            const res = await VulcanAdmin.apiFetch("/admin/ai-page-content", { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify(payload) });
+            aiContentId.value = res.id;
+            showSuccess("AI page content created.");
+          }
+        } catch(e){
+          showError(e.message || "Failed saving AI page content.");
+        } finally {
+          saveAiContentBtn.disabled=false;
+        }
+      });
+
+      // AI Features CRUD (prompt-based)
+      const aiFeaturesBody = document.getElementById("aiFeaturesBody");
+      const addAiFeatureBtn = document.getElementById("addAiFeatureBtn");
+
+      async function loadFeatures(){
+        const { features } = await VulcanAdmin.apiFetch("/admin/ai-features");
+        aiFeaturesBody.innerHTML = (features||[]).map((f)=>`
+          <tr class="group hover:bg-slate-50 transition-colors">
+            <td class="px-6 py-5">
+              <div class="font-semibold">${esc(f.title)}</div>
+              <div class="text-xs text-slate-500">${esc(f.description||"")}</div>
+            </td>
+            <td class="px-6 py-5 text-slate-500">${esc(f.image||"")}</td>
+            <td class="px-6 py-5 text-slate-500">${esc(f.sort_order)}</td>
+            <td class="px-6 py-5 text-right">
+              <div class="flex items-center justify-end gap-2">
+                <button data-edit="${f.id}" class="p-2 text-slate-500 hover:text-cyan-700 hover:bg-cyan-50 rounded-lg transition-all" type="button" title="Edit">
+                  <span class="material-symbols-outlined text-xl">edit</span>
+                </button>
+                <button data-del="${f.id}" class="p-2 text-slate-500 hover:text-red-700 hover:bg-red-50 rounded-lg transition-all" type="button" title="Delete">
+                  <span class="material-symbols-outlined text-xl">delete</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `).join("");
+      }
+
+      addAiFeatureBtn.addEventListener("click", async ()=>{
+        const title = prompt("Title:", "");
+        if (!title) return;
+        const description = prompt("Description:", "");
+        const image = prompt("Image path (e.g. img/predictive-chart.png):", "");
+        const sort_order = prompt("Sort order (number):", "1");
+        await VulcanAdmin.apiFetch("/admin/ai-features", { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ title, description, image, sort_order: Number(sort_order) }) });
+        showSuccess("Card added.");
+        await loadFeatures();
+      });
+
+      aiFeaturesBody.addEventListener("click", async (e)=>{
+        const editBtn = e.target.closest("[data-edit]");
+        const delBtn = e.target.closest("[data-del]");
+        if (delBtn) {
+          const id = delBtn.getAttribute("data-del");
+          if (!confirm("Delete this card?")) return;
+          await VulcanAdmin.apiFetch(`/admin/ai-features/${id}`, { method:"DELETE" });
+          showSuccess("Card deleted.");
+          await loadFeatures();
+        }
+        if (editBtn) {
+          const id = editBtn.getAttribute("data-edit");
+          const { feature } = await VulcanAdmin.apiFetch(`/admin/ai-features/${id}`);
+          const title = prompt("Title:", feature.title || "");
+          if (!title) return;
+          const description = prompt("Description:", feature.description || "");
+          const image = prompt("Image path:", feature.image || "");
+          const sort_order = prompt("Sort order:", String(feature.sort_order ?? ""));
+          await VulcanAdmin.apiFetch(`/admin/ai-features/${id}`, { method:"PUT", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ title, description, image, sort_order: Number(sort_order) }) });
+          showSuccess("Card updated.");
+          await loadFeatures();
+        }
+      });
+
+      Promise.all([loadContent(), loadFeatures()]).catch((e)=>showError(e.message || "Failed to load AI admin data."));
+    })();
+  </script>
+</body>
+</html>
+

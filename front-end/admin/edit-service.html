@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Edit Service | Vulcan ICT CMS</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-fixed": "#2c1700",
+            "outline": "#6d7980",
+            "surface-dim": "#d9dadb",
+            "on-primary-fixed": "#001e2c",
+            "surface-container-high": "#e7e8e9",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed": "#ffdcbc",
+            "tertiary-container": "#f59a24",
+            "inverse-surface": "#2e3132",
+            "secondary-fixed-dim": "#a0cce7",
+            "inverse-on-surface": "#f0f1f2",
+            "surface-container": "#edeeef",
+            "inverse-primary": "#78d1ff",
+            "surface-container-highest": "#e1e3e4",
+            "primary-container": "#06bcf9",
+            "background": "#f8f9fa",
+            "error": "#ba1a1a",
+            "on-secondary-fixed-variant": "#1c4c62",
+            "on-secondary-container": "#3a667d",
+            "primary-fixed": "#c2e8ff",
+            "on-surface": "#191c1d",
+            "on-secondary": "#ffffff",
+            "on-primary-fixed-variant": "#004d68",
+            "on-primary": "#ffffff",
+            "outline-variant": "#bcc8d1",
+            "surface-bright": "#f8f9fa",
+            "surface": "#f8f9fa",
+            "error-container": "#ffdad6",
+            "secondary": "#37637b",
+            "primary": "#006689",
+            "tertiary-fixed-dim": "#ffb86c",
+            "on-background": "#191c1d",
+            "on-surface-variant": "#3d484f",
+            "surface-variant": "#e1e3e4",
+            "surface-container-low": "#f3f4f5",
+            "on-primary-container": "#004862",
+            "on-error": "#ffffff",
+            "on-secondary-fixed": "#001e2c",
+            "primary-fixed-dim": "#78d1ff",
+            "secondary-container": "#b6e3fe",
+            "on-tertiary-fixed-variant": "#683c00",
+            "surface-tint": "#006689",
+            "on-tertiary-container": "#623800",
+            "on-error-container": "#93000a",
+            "secondary-fixed": "#c2e8ff",
+            "tertiary": "#895100",
+            "on-tertiary": "#ffffff"
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, .brand-font { font-family: 'Manrope', sans-serif; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .gradient-button { background: linear-gradient(135deg, #006689 0%, #06bcf9 100%); }
+  </style>
+</head>
+
+<body class="bg-background text-on-surface">
+    <aside id="vulcanAdminSidebar" class="h-screen w-64 fixed left-0 top-0 overflow-y-auto bg-slate-100 flex flex-col py-6 px-4 z-50"></aside>
+
+  <main class="ml-64 pt-16 min-h-screen">
+    <header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 z-40 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-800/50 flex justify-between items-center px-8">
+      <div class="flex items-center gap-4">
+        <div class="relative group">
+          <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 material-symbols-outlined text-sm">search</span>
+          <input class="pl-10 pr-4 py-1.5 bg-surface-container-low border-none rounded-full text-sm focus:ring-2 focus:ring-primary-container w-64 transition-all" placeholder="Search resources..." type="text"/>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-6xl mx-auto p-8 pt-24">
+      <div id="successBox" class="mb-8 rounded-xl border border-green-200 bg-green-50 px-5 py-4 text-sm font-medium text-green-700 hidden">
+        Service updated successfully!
+      </div>
+
+      <form id="editServiceForm">
+        <div class="mb-8">
+          <nav class="flex items-center gap-2 text-xs text-slate-500 mb-2">
+            <a class="hover:text-primary" href="/admin/services">Services</a>
+            <span class="material-symbols-outlined text-[10px]">chevron_right</span>
+            <span class="text-on-surface font-medium" id="serviceTitleBreadcrumb">—</span>
+          </nav>
+
+          <div class="flex justify-between items-end">
+            <div>
+              <h2 class="text-3xl font-extrabold tracking-tight text-on-surface mb-1">Edit Service</h2>
+              <p class="text-on-surface-variant">Update the technical specifications and delivery details for this service.</p>
+            </div>
+            <div class="flex gap-3">
+              <a href="/admin/services" class="px-6 py-2.5 text-sm font-semibold text-primary hover:bg-primary/5 transition-colors rounded-xl">Discard Changes</a>
+              <button type="submit" class="gradient-button px-8 py-2.5 text-sm font-bold text-white shadow-lg shadow-primary/20 rounded-xl transition-transform active:scale-95">Update Service</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-12 gap-8">
+          <div class="col-span-12 lg:col-span-8 space-y-8">
+            <section class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/10">
+              <div class="space-y-6">
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Service Name</label>
+                  <input class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary-container transition-all" type="text" name="title" id="title" required />
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Category</label>
+                    <input class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary-container transition-all" type="text" name="category" id="category" />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Features</label>
+                    <input class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary-container transition-all" type="text" name="features" id="features" />
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Detailed Description</label>
+                  <textarea class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary-container transition-all" rows="5" name="description" id="description" required></textarea>
+                </div>
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">The Problem</label>
+                  <textarea class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary-container transition-all" rows="3" name="problem" id="problem"></textarea>
+                </div>
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Target Audience</label>
+                  <textarea class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary-container transition-all" rows="3" name="target_audience" id="target_audience"></textarea>
+                </div>
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Why Trust Us?</label>
+                  <input class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary-container transition-all" type="text" name="trust_reason" id="trust_reason" />
+                </div>
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Icon Class</label>
+                  <input class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary-container transition-all" type="text" name="icon_class" id="icon_class" />
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script src="admin.js"></script>
+  <script src="shared.js"></script>
+  <script src="admin-layout.js"></script>
+  <script>
+    (function(){
+      if (!VulcanAdminUI.requireAuth()) return;
+      VulcanAdminLayout.renderSidebar("services");
+      VulcanAdminUI.rewriteAdminLinks();
+      VulcanAdminUI.adminLogoutLinkHandler();
+
+      const params = new URLSearchParams(location.search);
+      const id = params.get("id");
+      if (!id) { location.href = "services.html"; return; }
+
+      const successBox = document.getElementById("successBox");
+      const form = document.getElementById("editServiceForm");
+
+      async function load() {
+        const { services } = await VulcanAdmin.apiFetch(`/admin/services`);
+        const service = (services || []).find((s) => String(s.id) === String(id));
+        if (!service) {
+          location.href = "services.html";
+          return;
+        }
+        document.getElementById("serviceTitleBreadcrumb").textContent = service.title || "";
+        document.getElementById("title").value = service.title || "";
+        document.getElementById("category").value = service.category || "";
+        document.getElementById("features").value = service.features || "";
+        document.getElementById("description").value = service.description || "";
+        document.getElementById("problem").value = service.problem || "";
+        document.getElementById("target_audience").value = service.target_audience || "";
+        document.getElementById("trust_reason").value = service.trust_reason || "";
+        document.getElementById("icon_class").value = service.icon_class || "";
+      }
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        successBox.classList.add("hidden");
+        const payload = Object.fromEntries(new FormData(form).entries());
+        await VulcanAdmin.apiFetch(`/admin/services/${id}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        successBox.classList.remove("hidden");
+        await load();
+      });
+
+      load().catch(console.error);
+    })();
+  </script>
+</body>
+</html>
+

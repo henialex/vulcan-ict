@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Success Stories | Vulcan ICT CMS</title>
+
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; vertical-align: middle; }
+    .bg-gradient-primary { background: linear-gradient(135deg, #006689 0%, #06bcf9 100%); }
+  </style>
+</head>
+
+<body class="bg-[#f8f9fa] text-[#191c1d] font-body">
+    <aside id="vulcanAdminSidebar" class="h-screen w-64 fixed left-0 top-0 overflow-y-auto bg-slate-100 flex flex-col py-6 px-4 z-50"></aside>
+
+  <header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-white/80 backdrop-blur-xl z-40 border-b border-slate-200/50 flex items-center px-8">
+    <div>
+      <h2 class="text-lg font-extrabold tracking-tight font-headline">Success Stories</h2>
+      <p class="text-xs text-slate-500">Pick a project and edit its tags + timeline (used by your public success story pages).</p>
+    </div>
+  </header>
+
+  <main class="ml-64 mt-16 p-8 space-y-8 min-h-[calc(100vh-4rem)]">
+    <div id="alertSuccess" class="hidden rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 px-4 py-3 text-sm"></div>
+    <div id="alertError" class="hidden rounded-xl bg-red-50 border border-red-200 text-red-900 px-4 py-3 text-sm"></div>
+
+    <section class="bg-white rounded-xl shadow-sm p-6">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h3 class="text-xl font-extrabold tracking-tight font-headline">Select Project</h3>
+          <p class="text-sm text-slate-600">This sets which project you’re editing.</p>
+        </div>
+        <div class="w-full md:w-[520px]">
+          <select id="projectSelect" class="w-full rounded-xl border-slate-200 bg-white">
+            <option value="">Loading projects…</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white rounded-xl shadow-sm p-6">
+      <div class="flex items-center justify-between gap-4 mb-4">
+        <div>
+          <h3 class="text-xl font-extrabold tracking-tight font-headline">Chips (Tags)</h3>
+          <p class="text-sm text-slate-600">These render at the top of the success story page.</p>
+        </div>
+        <button id="addTagBtn" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-slate-200 transition-colors">
+          Add Tag
+        </button>
+      </div>
+
+      <div class="overflow-x-auto rounded-xl border border-slate-200">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-slate-50 text-slate-600 text-[11px] uppercase tracking-[0.15em] font-bold">
+              <th class="px-6 py-4">Label</th>
+              <th class="px-6 py-4">Icon</th>
+              <th class="px-6 py-4">Sort</th>
+              <th class="px-6 py-4 text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="tagsBody" class="divide-y divide-slate-100"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="bg-white rounded-xl shadow-sm p-6">
+      <div class="flex items-center justify-between gap-4 mb-4">
+        <div>
+          <h3 class="text-xl font-extrabold tracking-tight font-headline">Timeline</h3>
+          <p class="text-sm text-slate-600">These render in the “Timeline / journey” section.</p>
+        </div>
+        <button id="addTimelineBtn" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-slate-200 transition-colors">
+          Add Timeline Item
+        </button>
+      </div>
+
+      <div class="overflow-x-auto rounded-xl border border-slate-200">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-slate-50 text-slate-600 text-[11px] uppercase tracking-[0.15em] font-bold">
+              <th class="px-6 py-4">Title</th>
+              <th class="px-6 py-4">Description</th>
+              <th class="px-6 py-4">Sort</th>
+              <th class="px-6 py-4 text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="timelinesBody" class="divide-y divide-slate-100"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="admin.js"></script>
+  <script src="shared.js"></script>
+  <script src="admin-layout.js"></script>
+  <script>
+    (function () {
+      if (!VulcanAdminUI.requireAuth()) return;
+      VulcanAdminLayout.renderSidebar("success-story-ecta");
+      VulcanAdminUI.rewriteAdminLinks();
+      VulcanAdminUI.adminLogoutLinkHandler();
+
+      function getQueryParam(name) {
+        try {
+          return new URLSearchParams(location.search).get(name);
+        } catch {
+          return null;
+        }
+      }
+
+      let currentProjectId = Number(getQueryParam("projectId") || 5); // default to ECTA
+      const alertSuccess = document.getElementById("alertSuccess");
+      const alertError = document.getElementById("alertError");
+      function showSuccess(msg){alertError.classList.add("hidden"); alertSuccess.textContent=msg; alertSuccess.classList.remove("hidden"); setTimeout(()=>alertSuccess.classList.add("hidden"), 2500);}
+      function showError(msg){alertSuccess.classList.add("hidden"); alertError.textContent=msg||"Something went wrong."; alertError.classList.remove("hidden");}
+      function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+      const projectSelect = document.getElementById("projectSelect");
+      const tagsBody = document.getElementById("tagsBody");
+      const timelinesBody = document.getElementById("timelinesBody");
+      let tagsCache = [];
+      let timelinesCache = [];
+
+      async function loadTags() {
+        const { tags } = await VulcanAdmin.apiFetch(`/admin/projects/${currentProjectId}/tags`);
+        tagsCache = tags || [];
+        tagsBody.innerHTML = tagsCache.map((t)=>`
+          <tr class="group hover:bg-slate-50 transition-colors">
+            <td class="px-6 py-5 font-semibold">${esc(t.label)}</td>
+            <td class="px-6 py-5 text-slate-500">${esc(t.icon_class || "")}</td>
+            <td class="px-6 py-5 text-slate-500">${esc(t.sort_order)}</td>
+            <td class="px-6 py-5 text-right">
+              <div class="flex items-center justify-end gap-2">
+                <button data-edit-tag="${t.id}" class="p-2 text-slate-500 hover:text-cyan-700 hover:bg-cyan-50 rounded-lg" type="button" title="Edit">
+                  <span class="material-symbols-outlined text-xl">edit</span>
+                </button>
+                <button data-del-tag="${t.id}" class="p-2 text-slate-500 hover:text-red-700 hover:bg-red-50 rounded-lg" type="button" title="Delete">
+                  <span class="material-symbols-outlined text-xl">delete</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `).join("");
+      }
+
+      async function loadTimelines() {
+        const { timelines } = await VulcanAdmin.apiFetch(`/admin/projects/${currentProjectId}/timelines`);
+        timelinesCache = timelines || [];
+        timelinesBody.innerHTML = timelinesCache.map((t)=>`
+          <tr class="group hover:bg-slate-50 transition-colors">
+            <td class="px-6 py-5 font-semibold">${esc(t.title)}</td>
+            <td class="px-6 py-5 text-slate-600">${esc(t.description || "")}</td>
+            <td class="px-6 py-5 text-slate-500">${esc(t.sort_order)}</td>
+            <td class="px-6 py-5 text-right">
+              <div class="flex items-center justify-end gap-2">
+                <button data-edit-tl="${t.id}" class="p-2 text-slate-500 hover:text-cyan-700 hover:bg-cyan-50 rounded-lg" type="button" title="Edit">
+                  <span class="material-symbols-outlined text-xl">edit</span>
+                </button>
+                <button data-del-tl="${t.id}" class="p-2 text-slate-500 hover:text-red-700 hover:bg-red-50 rounded-lg" type="button" title="Delete">
+                  <span class="material-symbols-outlined text-xl">delete</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `).join("");
+      }
+
+      async function loadProjects() {
+        const { projects } = await VulcanAdmin.apiFetch("/admin/projects");
+        const list = projects || [];
+
+        if (!Number.isFinite(currentProjectId) || currentProjectId <= 0) {
+          currentProjectId = list[0]?.id ? Number(list[0].id) : 5;
+        }
+
+        projectSelect.innerHTML = list
+          .map((p) => `<option value="${esc(p.id)}">${esc(p.title || `Project #${p.id}`)}</option>`)
+          .join("");
+
+        // if the chosen project isn't in list, fallback to first
+        const has = list.some((p) => String(p.id) === String(currentProjectId));
+        if (!has && list[0]?.id) currentProjectId = Number(list[0].id);
+
+        projectSelect.value = String(currentProjectId);
+      }
+
+      function setProjectId(nextId) {
+        currentProjectId = Number(nextId);
+        const qs = new URLSearchParams(location.search);
+        qs.set("projectId", String(currentProjectId));
+        history.replaceState(null, "", `${location.pathname}?${qs.toString()}`);
+      }
+
+      projectSelect.addEventListener("change", async () => {
+        if (!projectSelect.value) return;
+        try {
+          setProjectId(projectSelect.value);
+          await Promise.all([loadTags(), loadTimelines()]);
+          showSuccess("Loaded selected project.");
+        } catch (err) {
+          showError(err.message || "Could not load project data.");
+        }
+      });
+
+      document.getElementById("addTagBtn").addEventListener("click", async ()=>{
+        try {
+          const label = prompt("Label:", "");
+          if (!label) return;
+          const icon_class = prompt("Icon class (e.g. fa fa-university):", "fa fa-tag");
+          const sort_order = prompt("Sort order:", "1");
+          await VulcanAdmin.apiFetch(`/admin/projects/${currentProjectId}/tags`, { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ label, icon_class, sort_order: Number(sort_order) }) });
+          showSuccess("Tag added.");
+          await loadTags();
+        } catch (err) {
+          showError(err.message || "Could not add tag.");
+        }
+      });
+
+      tagsBody.addEventListener("click", async (e)=>{
+        const delBtn = e.target.closest("[data-del-tag]");
+        const editBtn = e.target.closest("[data-edit-tag]");
+        if (delBtn) {
+          try {
+            const id = delBtn.getAttribute("data-del-tag");
+            if (!confirm("Delete this tag?")) return;
+            await VulcanAdmin.apiFetch(`/admin/projects/${currentProjectId}/tags/${id}`, { method:"DELETE" });
+            showSuccess("Tag deleted.");
+            await loadTags();
+          } catch (err) {
+            showError(err.message || "Could not delete tag.");
+          }
+        }
+        if (editBtn) {
+          try {
+            const id = editBtn.getAttribute("data-edit-tag");
+            const existing = tagsCache.find((t) => String(t.id) === String(id));
+            const label = prompt("Label:", existing?.label || "");
+            if (!label) return;
+            const icon_class = prompt("Icon class:", existing?.icon_class || "fa fa-tag");
+            const sort_order = prompt("Sort order:", String(existing?.sort_order ?? 1));
+            await VulcanAdmin.apiFetch(`/admin/projects/${currentProjectId}/tags/${id}`, { method:"PUT", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ label, icon_class, sort_order: Number(sort_order) }) });
+            showSuccess("Tag updated.");
+            await loadTags();
+          } catch (err) {
+            showError(err.message || "Could not update tag.");
+          }
+        }
+      });
+
+      document.getElementById("addTimelineBtn").addEventListener("click", async ()=>{
+        try {
+          const title = prompt("Title:", "");
+          if (!title) return;
+          const description = prompt("Description:", "") || "";
+          const sort_order = prompt("Sort order:", "1");
+          await VulcanAdmin.apiFetch(`/admin/projects/${currentProjectId}/timelines`, { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ title, description, sort_order: Number(sort_order) }) });
+          showSuccess("Timeline item added.");
+          await loadTimelines();
+        } catch (err) {
+          showError(err.message || "Could not add timeline item.");
+        }
+      });
+
+      timelinesBody.addEventListener("click", async (e)=>{
+        const delBtn = e.target.closest("[data-del-tl]");
+        const editBtn = e.target.closest("[data-edit-tl]");
+        if (delBtn) {
+          try {
+            const id = delBtn.getAttribute("data-del-tl");
+            if (!confirm("Delete this timeline item?")) return;
+            await VulcanAdmin.apiFetch(`/admin/projects/${currentProjectId}/timelines/${id}`, { method:"DELETE" });
+            showSuccess("Timeline item deleted.");
+            await loadTimelines();
+          } catch (err) {
+            showError(err.message || "Could not delete timeline item.");
+          }
+        }
+        if (editBtn) {
+          try {
+            const id = editBtn.getAttribute("data-edit-tl");
+            const existing = timelinesCache.find((t) => String(t.id) === String(id));
+            const title = prompt("Title:", existing?.title || "");
+            if (!title) return;
+            const description = prompt("Description:", existing?.description || "") || "";
+            const sort_order = prompt("Sort order:", String(existing?.sort_order ?? 1));
+            await VulcanAdmin.apiFetch(`/admin/projects/${currentProjectId}/timelines/${id}`, { method:"PUT", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ title, description, sort_order: Number(sort_order) }) });
+            showSuccess("Timeline item updated.");
+            await loadTimelines();
+          } catch (err) {
+            showError(err.message || "Could not update timeline item.");
+          }
+        }
+      });
+
+      Promise.resolve()
+        .then(loadProjects)
+        .then(() => Promise.all([loadTags(), loadTimelines()]))
+        .catch((e)=>showError(e.message || "Failed loading success story admin data."));
+    })();
+  </script>
+</body>
+</html>
+
