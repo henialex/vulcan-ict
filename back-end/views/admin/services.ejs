@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Services | Vulcan ICT CMS</title>
+
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-fixed": "#2c1700",
+            "outline": "#6d7980",
+            "surface-dim": "#d9dadb",
+            "on-primary-fixed": "#001e2c",
+            "surface-container-high": "#e7e8e9",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed": "#ffdcbc",
+            "tertiary-container": "#f59a24",
+            "inverse-surface": "#2e3132",
+            "secondary-fixed-dim": "#a0cce7",
+            "inverse-on-surface": "#f0f1f2",
+            "surface-container": "#edeeef",
+            "inverse-primary": "#78d1ff",
+            "surface-container-highest": "#e1e3e4",
+            "primary-container": "#06bcf9",
+            "background": "#f8f9fa",
+            "error": "#ba1a1a",
+            "on-secondary-fixed-variant": "#1c4c62",
+            "on-secondary-container": "#3a667d",
+            "primary-fixed": "#c2e8ff",
+            "on-surface": "#191c1d",
+            "on-secondary": "#ffffff",
+            "on-primary-fixed-variant": "#004d68",
+            "on-primary": "#ffffff",
+            "outline-variant": "#bcc8d1",
+            "surface-bright": "#f8f9fa",
+            "surface": "#f8f9fa",
+            "error-container": "#ffdad6",
+            "secondary": "#37637b",
+            "primary": "#006689",
+            "tertiary-fixed-dim": "#ffb86c",
+            "on-background": "#191c1d",
+            "on-surface-variant": "#3d484f",
+            "surface-variant": "#e1e3e4",
+            "surface-container-low": "#f3f4f5",
+            "on-primary-container": "#004862",
+            "on-error": "#ffffff",
+            "on-secondary-fixed": "#001e2c",
+            "primary-fixed-dim": "#78d1ff",
+            "secondary-container": "#b6e3fe",
+            "on-tertiary-fixed-variant": "#683c00",
+            "surface-tint": "#006689",
+            "on-tertiary-container": "#623800",
+            "on-error-container": "#93000a",
+            "secondary-fixed": "#c2e8ff",
+            "tertiary": "#895100",
+            "on-tertiary": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "fontFamily": {
+            "headline": ["Manrope"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          }
+        },
+      },
+    }
+  </script>
+
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .bg-gradient-primary {
+      background: linear-gradient(135deg, #006689 0%, #06bcf9 100%);
+    }
+  </style>
+</head>
+
+<body class="bg-background text-on-surface font-body selection:bg-primary-fixed">
+  <!-- SideNavBar (Left) -->
+  <aside class="h-screen w-64 fixed left-0 top-0 overflow-y-auto bg-slate-100 dark:bg-slate-900 flex flex-col py-6 px-4 z-50">
+    <div class="mb-10 px-2">
+      <h1 class="text-2xl font-bold tracking-tighter text-slate-900 dark:text-white font-headline">Vulcan ICT</h1>
+      <p class="text-xs font-medium text-slate-500 uppercase tracking-widest mt-1">Admin Dashboard</p>
+    </div>
+
+    <nav class="flex-1 space-y-1">
+      <a class="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors duration-200 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 group" href="/admin">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span class="font-manrope text-sm font-medium">Dashboard</span>
+      </a>
+
+      <a class="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors duration-200 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 group" href="/admin/projects">
+        <span class="material-symbols-outlined">folder_special</span>
+        <span class="font-manrope text-sm font-medium">Projects</span>
+      </a>
+
+      <a class="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors duration-200 text-cyan-600 dark:text-cyan-400 font-semibold bg-white dark:bg-slate-800 shadow-sm group" href="/admin/services">
+        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">engineering</span>
+        <span class="font-manrope text-sm">Services</span>
+      </a>
+
+      <a class="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors duration-200 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 group" href="/admin/messages">
+        <span class="material-symbols-outlined">mail</span>
+        <span class="font-manrope text-sm font-medium">Messages</span>
+      </a>
+    </nav>
+
+    <div class="mt-auto pt-6 space-y-1">
+      <a class="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors duration-200 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800" href="/admin/logout">
+        <span class="material-symbols-outlined">logout</span>
+        <span class="font-manrope text-sm font-medium">Logout</span>
+      </a>
+
+      <div class="mt-6 flex items-center gap-3 px-3 py-4 border-t border-slate-200 dark:border-slate-800">
+        <div class="w-10 h-10 rounded-full bg-slate-200 overflow-hidden flex-shrink-0">
+          <img class="w-full h-full object-cover" alt="Admin avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbUOs9_7cWsmo53NB0MDTP47YntRMjO1KB0b0lr1OB7qs5zKO_8xerAx8-AuRizOZQsD6Fv5Cqh43WuTLtRSiOz_MsYxDMc7b0o0ipAnXXJPtpJ9z4_Ro4K6h68BS59bTO5hhmQERmuNsAlv15GAdyIojK3JFbykpVXTeJRiL4L_VSbHWj-LUsJJhQRVQh5kepn17gKZUi5P21kRuIyLDQQONVkBZP6HkFawRs91RPat-yYrksuxhSMXrbwrPNHZvAGjknGL-I0GdZ"/>
+        </div>
+        <div class="overflow-hidden">
+          <p class="text-xs font-bold text-slate-900 dark:text-white truncate">Vulcan ICT Admin</p>
+          <p class="text-[10px] text-slate-500 truncate">System Overseer</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- TopAppBar -->
+  <header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl z-40 border-b border-slate-200/50 dark:border-slate-800/50 flex justify-between items-center px-8 transition-opacity duration-150">
+    <div class="flex items-center gap-4 flex-1">
+      <div class="relative w-full max-w-md">
+        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+        <input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-sm focus:ring-2 focus:ring-primary-container focus:bg-surface-container-lowest transition-all" placeholder="Search services..." type="text"/>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-6">
+      <div class="flex items-center gap-2">
+        <button class="p-2 text-slate-600 dark:text-slate-400 hover:text-cyan-500 transition-all" type="button">
+          <span class="material-symbols-outlined">notifications</span>
+        </button>
+        <button class="p-2 text-slate-600 dark:text-slate-400 hover:text-cyan-500 transition-all" type="button">
+          <span class="material-symbols-outlined">help_outline</span>
+        </button>
+      </div>
+
+      <div class="h-6 w-px bg-slate-200 dark:bg-slate-800"></div>
+
+      <div class="flex items-center gap-4">
+        <button class="text-sm font-medium text-slate-600 hover:text-cyan-500 transition-all" type="button">Support</button>
+
+        <a href="/admin/add-service" class="bg-gradient-primary text-white px-5 py-2 rounded-xl text-sm font-semibold shadow-md hover:scale-95 transition-transform active:scale-90">
+          New Service
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Canvas -->
+  <main class="ml-64 mt-16 p-8 min-h-[calc(100vh-4rem)]">
+    <!-- Header Section -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+      <div>
+        <nav class="flex items-center gap-2 text-xs text-outline mb-2 uppercase tracking-widest font-semibold">
+          <span>Admin</span>
+          <span class="material-symbols-outlined text-[10px]">chevron_right</span>
+          <span class="text-primary">Services</span>
+        </nav>
+
+        <h2 class="text-4xl font-extrabold tracking-tight font-headline text-on-surface">Service Directory</h2>
+        <p class="text-on-surface-variant mt-2 max-w-xl">Manage the core technical offerings and consultancy categories for Vulcan ICT's digital infrastructure portfolio.</p>
+      </div>
+
+      <a href="/admin/add-service" class="bg-gradient-primary text-white px-6 py-3 rounded-xl flex items-center gap-2 font-bold shadow-lg shadow-primary/20 hover:-translate-y-1 transition-all">
+        <span class="material-symbols-outlined">add</span>
+        Add Service
+      </a>
+    </div>
+
+    <!-- Dashboard Stats Bento (Summary) -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+      <div class="bg-surface-container-lowest p-6 rounded-xl border border-transparent shadow-sm flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+          <span class="material-symbols-outlined">category</span>
+        </div>
+        <div>
+          <p class="text-xs text-outline font-semibold uppercase">Total Services</p>
+          <p class="text-2xl font-bold font-headline"><%= services ? services.length : 0 %></p>
+        </div>
+      </div>
+
+      <div class="bg-surface-container-lowest p-6 rounded-xl border border-transparent shadow-sm flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-tertiary/10 flex items-center justify-center text-tertiary">
+          <span class="material-symbols-outlined">bolt</span>
+        </div>
+        <div>
+          <p class="text-xs text-outline font-semibold uppercase">Active Items</p>
+          <p class="text-2xl font-bold font-headline"><%= services ? services.length : 0 %></p>
+        </div>
+      </div>
+
+      <div class="bg-surface-container-lowest p-6 rounded-xl border border-transparent shadow-sm flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
+          <span class="material-symbols-outlined">visibility</span>
+        </div>
+        <div>
+          <p class="text-xs text-outline font-semibold uppercase">Public View</p>
+          <p class="text-2xl font-bold font-headline"><%= services ? services.length : 0 %></p>
+        </div>
+      </div>
+
+      <div class="bg-surface-container-lowest p-6 rounded-xl border border-transparent shadow-sm flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-error/10 flex items-center justify-center text-error">
+          <span class="material-symbols-outlined">warning</span>
+        </div>
+        <div>
+          <p class="text-xs text-outline font-semibold uppercase">Pending Drafts</p>
+          <p class="text-2xl font-bold font-headline">0</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Services Table Section -->
+    <section class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-transparent">
+      <div class="p-6 flex items-center justify-between bg-surface-container-low/50">
+        <div class="flex items-center gap-4">
+          <button class="px-4 py-2 bg-surface-container-lowest rounded-lg text-sm font-semibold border-b-2 border-primary text-primary" type="button">All Services</button>
+          <button class="px-4 py-2 text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" type="button">Infrastructure</button>
+          <button class="px-4 py-2 text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" type="button">Consulting</button>
+          <button class="px-4 py-2 text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" type="button">Security</button>
+        </div>
+
+        <button class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-outline hover:text-on-surface transition-colors" type="button">
+          <span class="material-symbols-outlined text-sm">filter_list</span>
+          Filter
+        </button>
+      </div>
+
+      <% if (services && services.length > 0) { %>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-surface-container-low text-on-surface-variant text-[11px] uppercase tracking-[0.15em] font-bold">
+                <th class="px-8 py-4 w-1/2">Service Title</th>
+                <th class="px-8 py-4">Category</th>
+                <th class="px-8 py-4">Status</th>
+                <th class="px-8 py-4 text-right">Actions</th>
+              </tr>
+            </thead>
+
+            <tbody class="divide-y divide-surface-container">
+              <% services.forEach((service) => { %>
+                <tr class="group hover:bg-surface-container-low/30 transition-colors">
+                  <td class="px-8 py-6">
+                    <div class="flex items-center gap-4">
+                      <div class="w-10 h-10 rounded-lg bg-primary-fixed-dim flex items-center justify-center text-primary-fixed-variant">
+                        <% if (service.icon_class) { %>
+                          <i class="<%= service.icon_class %>"></i>
+                        <% } else { %>
+                          <span class="material-symbols-outlined">engineering</span>
+                        <% } %>
+                      </div>
+
+                      <div>
+                        <p class="font-semibold text-on-surface"><%= service.title %></p>
+                        <p class="text-xs text-on-surface-variant">
+                          <%= service.description ? service.description.substring(0, 60) : "Service record" %><%= service.description && service.description.length > 60 ? "..." : "" %>
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="px-8 py-6">
+                    <span class="px-3 py-1 bg-surface-container-high rounded-full text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">
+                      <%= service.category || "-" %>
+                    </span>
+                  </td>
+
+                  <td class="px-8 py-6">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                      <span class="text-sm font-medium">Active</span>
+                    </div>
+                  </td>
+
+                  <td class="px-8 py-6 text-right">
+                    <div class="flex items-center justify-end gap-2">
+                      <a class="p-2 text-outline hover:text-primary hover:bg-primary/5 rounded-lg transition-all" href="/admin/edit-service/<%= service.id %>" title="Edit Service">
+                        <span class="material-symbols-outlined text-xl">edit</span>
+                      </a>
+
+                      <a class="p-2 text-outline hover:text-error hover:bg-error/5 rounded-lg transition-all" href="/admin/delete-service/<%= service.id %>" onclick="return confirm('Are you sure?')" title="Delete Service">
+                        <span class="material-symbols-outlined text-xl">delete</span>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="p-6 border-t border-surface-container flex items-center justify-between text-sm">
+          <p class="text-on-surface-variant">Showing <span class="font-bold text-on-surface">1-<%= services.length %></span> of <%= services.length %> results</p>
+          <div class="flex items-center gap-2">
+            <button class="p-2 rounded-lg hover:bg-surface-container transition-colors disabled:opacity-30" disabled type="button">
+              <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <button class="w-8 h-8 rounded-lg bg-primary text-white font-bold" type="button">1</button>
+            <button class="p-2 rounded-lg hover:bg-surface-container transition-colors" type="button">
+              <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+          </div>
+        </div>
+      <% } else { %>
+        <div class="flex flex-col items-center justify-center py-20 bg-surface-container-low/20">
+          <div class="w-24 h-24 mb-6 relative">
+            <div class="absolute inset-0 bg-primary/5 rounded-full animate-pulse"></div>
+            <div class="absolute inset-4 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+              <span class="material-symbols-outlined !text-4xl">search_off</span>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold font-headline mb-2">No services found</h3>
+          <p class="text-on-surface-variant mb-6 text-center max-w-xs">Adjust your search or add a new service to get started with the directory.</p>
+          <a class="text-primary font-bold hover:underline flex items-center gap-2" href="/admin/add-service">
+            Add your first service
+          </a>
+        </div>
+      <% } %>
+    </section>
+
+    <!-- Contextual Help / Empty State Placeholder Example Area -->
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="p-8 rounded-2xl bg-gradient-primary text-white flex flex-col justify-center relative overflow-hidden group">
+        <div class="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay bg-white/20" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDX08aL56__zaHyfeKIz6nVzqiZwDn7EQY_8IZEZQ4kvsBkZ2RUCjYqnJTg41jKOSyAAMUY_HsrVsRxoAHntV9X-Mis6jwwDdhMgyWv_KzAzR7UHuAycWACG1Q6lpxgRtbLMFNRBoSqUit3s2gx7w7OLpouqt9zgxHwd1rurKNpCoJ5Fa5prtOupOXv47QxHPGYSs1Quo3jANAPJOQG64QzZtOrfl1K7e0aqtC70gfydYV4eIEdorc_F80tKJU8Ur-ommBX8ziABA5w')"></div>
+        <div class="relative z-10">
+          <h4 class="text-2xl font-bold font-headline mb-3">Service Best Practices</h4>
+          <p class="text-white/80 text-sm leading-relaxed mb-6">Ensure all services include a clear value proposition and well-structured features to maintain consistency on the public site.</p>
+          <a class="inline-flex items-center gap-2 text-sm font-bold bg-white/20 hover:bg-white/30 backdrop-blur px-4 py-2 rounded-lg transition-all" href="/admin/add-service">
+            Review Guidelines
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </a>
+        </div>
+        <div class="absolute -right-10 -bottom-10 opacity-10 group-hover:scale-110 transition-transform duration-700">
+          <span class="material-symbols-outlined !text-[200px]">auto_awesome_motion</span>
+        </div>
+      </div>
+
+      <div class="p-8 rounded-2xl bg-surface-container-high border border-outline-variant/30 flex items-center gap-6">
+        <div class="w-20 h-20 rounded-xl overflow-hidden shadow-inner flex-shrink-0">
+          <img class="w-full h-full object-cover" alt="Tech visual" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDssbs29jLObee_JyU7W2neap1zvQDaRIs3Y9LwRk4rTHHK_Qv9AWd_fqtiJ5ve9myrQIjGravpjz-DXUHKf7d5YazBtTDxex050PWPV8ymIn72NCdVPAppH5pSaXGADYaOg6fHIhOMDja5CW-jYHJp_6C9MVMoAi6XGPmBFFUu8zw8aOQcwXkLmnUpb8kULnuIh6OAMiFuaprA6yFORVU5Td-Gbf_4uUKKsQ1Tc8NgIbnvyijolob-uUjwzJGmsvFj4s-uRt_Sh1d4"/>
+        </div>
+        <div>
+          <h4 class="font-bold font-headline text-lg mb-1">New Category Suggested</h4>
+          <p class="text-on-surface-variant text-sm mb-4">The AI analyzed recent client inquiries and suggests adding 'Edge Computing' as a primary service category.</p>
+          <button class="text-primary text-xs font-bold uppercase tracking-widest hover:tracking-[0.2em] transition-all" type="button">Learn More</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

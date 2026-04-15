@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Vulcan ICT CMS - Dashboard</title>
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-tertiary-fixed": "#2c1700",
+            "outline": "#6d7980",
+            "surface-dim": "#d9dadb",
+            "on-primary-fixed": "#001e2c",
+            "surface-container-high": "#e7e8e9",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed": "#ffdcbc",
+            "tertiary-container": "#f59a24",
+            "inverse-surface": "#2e3132",
+            "secondary-fixed-dim": "#a0cce7",
+            "inverse-on-surface": "#f0f1f2",
+            "surface-container": "#edeeef",
+            "inverse-primary": "#78d1ff",
+            "surface-container-highest": "#e1e3e4",
+            "primary-container": "#06bcf9",
+            "background": "#f8f9fa",
+            "error": "#ba1a1a",
+            "on-secondary-fixed-variant": "#1c4c62",
+            "on-secondary-container": "#3a667d",
+            "primary-fixed": "#c2e8ff",
+            "on-surface": "#191c1d",
+            "on-secondary": "#ffffff",
+            "on-primary-fixed-variant": "#004d68",
+            "on-primary": "#ffffff",
+            "outline-variant": "#bcc8d1",
+            "surface-bright": "#f8f9fa",
+            "surface": "#f8f9fa",
+            "error-container": "#ffdad6",
+            "secondary": "#37637b",
+            "primary": "#006689",
+            "tertiary-fixed-dim": "#ffb86c",
+            "on-background": "#191c1d",
+            "on-surface-variant": "#3d484f",
+            "surface-variant": "#e1e3e4",
+            "surface-container-low": "#f3f4f5",
+            "on-primary-container": "#004862",
+            "on-error": "#ffffff",
+            "on-secondary-fixed": "#001e2c",
+            "primary-fixed-dim": "#78d1ff",
+            "secondary-container": "#b6e3fe",
+            "on-tertiary-fixed-variant": "#683c00",
+            "surface-tint": "#006689",
+            "on-tertiary-container": "#623800",
+            "on-error-container": "#93000a",
+            "secondary-fixed": "#c2e8ff",
+            "tertiary": "#895100",
+            "on-tertiary": "#ffffff"
+          },
+          borderRadius: {
+            DEFAULT: "0.125rem",
+            lg: "0.25rem",
+            xl: "0.5rem",
+            full: "0.75rem"
+          },
+          fontFamily: {
+            headline: ["Manrope"],
+            body: ["Inter"],
+            label: ["Inter"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .gradient-brand {
+      background: linear-gradient(135deg, #006689 0%, #06bcf9 100%);
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8f9fa;
+    }
+    h1, h2, h3, .brand-font {
+      font-family: 'Manrope', sans-serif;
+    }
+  </style>
+</head>
+
+<body class="bg-background text-on-surface">
+  <!-- Sidebar -->
+  <aside class="h-screen w-64 fixed left-0 top-0 overflow-y-auto bg-slate-100 flex flex-col py-6 px-4 z-50">
+    <div class="mb-10 px-2">
+      <h1 class="text-2xl font-bold tracking-tighter text-slate-900">Vulcan ICT</h1>
+      <p class="text-xs text-slate-500 font-medium">Admin Dashboard</p>
+    </div>
+
+    <nav class="flex-1 space-y-1">
+      <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-cyan-600 font-semibold bg-slate-200 transition-colors duration-200" href="/admin">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span class="text-sm font-medium">Dashboard</span>
+      </a>
+
+      <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:bg-slate-200 transition-colors duration-200" href="/admin/projects">
+        <span class="material-symbols-outlined">folder_special</span>
+        <span class="text-sm font-medium">Projects</span>
+      </a>
+
+      <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:bg-slate-200 transition-colors duration-200" href="/admin/services">
+        <span class="material-symbols-outlined">engineering</span>
+        <span class="text-sm font-medium">Services</span>
+      </a>
+
+      <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:bg-slate-200 transition-colors duration-200" href="/admin/messages">
+        <span class="material-symbols-outlined">mail</span>
+        <span class="text-sm font-medium">Messages</span>
+      </a>
+    </nav>
+
+    <div class="pt-6 mt-6 border-t border-slate-200 space-y-1">
+      <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:bg-slate-200 transition-colors duration-200" href="/admin/logout">
+        <span class="material-symbols-outlined">logout</span>
+        <span class="text-sm font-medium">Logout</span>
+      </a>
+    </div>
+
+    <div class="mt-8 flex items-center gap-3 px-2">
+      <div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-white text-sm font-bold">
+        A
+      </div>
+      <div>
+        <p class="text-xs font-bold text-slate-900">Admin User</p>
+        <p class="text-[10px] text-slate-500">Vulcan ICT Admin</p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Topbar -->
+  <header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 z-40 bg-white/80 backdrop-blur-xl border-b border-slate-200/50 flex justify-between items-center px-8">
+    <div class="flex items-center gap-6 flex-1">
+      <div class="relative w-full max-w-md">
+        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+        <input class="w-full bg-surface-container-low border-none rounded-xl pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary-container transition-all" placeholder="Search resources..." type="text"/>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <button class="p-2 text-slate-600 hover:text-cyan-500 transition-all" type="button">
+        <span class="material-symbols-outlined">notifications</span>
+      </button>
+
+      <div class="h-6 w-[1px] bg-slate-200 mx-2"></div>
+
+      <a href="/admin/add-project" class="gradient-brand text-white px-5 py-2 rounded-xl text-sm font-bold shadow-lg shadow-primary/20 active:scale-95 transition-transform">
+        New Project
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="ml-64 pt-16 min-h-screen p-8">
+    <header class="mb-10">
+      <h2 class="text-3xl font-extrabold tracking-tight text-on-surface mb-1">Admin Overview</h2>
+      <p class="text-on-surface-variant text-base">
+        Welcome back. Manage projects, services, and contact messages from one place.
+      </p>
+    </header>
+
+    <!-- Summary Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+      <div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0px_12px_32px_rgba(25,28,29,0.02)] group hover:-translate-y-1 transition-all duration-300">
+        <div class="flex justify-between items-start mb-4">
+          <div class="p-3 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+            <span class="material-symbols-outlined text-2xl">folder_copy</span>
+          </div>
+          <span class="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full">Projects</span>
+        </div>
+        <p class="text-sm font-medium text-on-surface-variant mb-1">Manage Projects</p>
+        <h3 class="text-4xl font-extrabold tracking-tight text-on-surface">01</h3>
+        <p class="mt-4 text-[10px] text-on-surface-variant">Create, edit, and delete website projects</p>
+      </div>
+
+      <div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0px_12px_32px_rgba(25,28,29,0.02)] group hover:-translate-y-1 transition-all duration-300">
+        <div class="flex justify-between items-start mb-4">
+          <div class="p-3 rounded-xl bg-tertiary/10 text-tertiary group-hover:bg-tertiary group-hover:text-white transition-colors duration-300">
+            <span class="material-symbols-outlined text-2xl">cloud_done</span>
+          </div>
+          <span class="text-xs font-bold text-on-surface-variant bg-surface-container-high px-2 py-1 rounded-full">Services</span>
+        </div>
+        <p class="text-sm font-medium text-on-surface-variant mb-1">Manage Services</p>
+        <h3 class="text-4xl font-extrabold tracking-tight text-on-surface">02</h3>
+        <p class="mt-4 text-[10px] text-on-surface-variant">Update service content and feature details</p>
+      </div>
+
+      <div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0px_12px_32px_rgba(25,28,29,0.02)] group hover:-translate-y-1 transition-all duration-300">
+        <div class="flex justify-between items-start mb-4">
+          <div class="p-3 rounded-xl bg-error/10 text-error group-hover:bg-error group-hover:text-white transition-colors duration-300">
+            <span class="material-symbols-outlined text-2xl">mark_email_unread</span>
+          </div>
+          <span class="w-3 h-3 rounded-full bg-error animate-pulse"></span>
+        </div>
+        <p class="text-sm font-medium text-on-surface-variant mb-1">Contact Messages</p>
+        <h3 class="text-4xl font-extrabold tracking-tight text-on-surface">03</h3>
+        <p class="mt-4 text-[10px] text-on-surface-variant">Review submitted inquiries from the website</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Quick Management -->
+      <div class="lg:col-span-2">
+        <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_12px_32px_rgba(25,28,29,0.02)]">
+          <div class="p-6 border-b border-outline-variant/15 flex justify-between items-center">
+            <h3 class="text-xl font-bold text-on-surface">Quick Management</h3>
+            <span class="text-sm font-semibold text-primary">Admin Tools</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
+            <a href="/admin/projects" class="block rounded-xl border border-slate-200 p-5 hover:border-primary hover:bg-slate-50 transition-all">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="material-symbols-outlined text-primary">folder_special</span>
+                <h4 class="font-bold text-on-surface">All Projects</h4>
+              </div>
+              <p class="text-sm text-on-surface-variant">View and manage all stored projects.</p>
+            </a>
+
+            <a href="/admin/add-project" class="block rounded-xl border border-slate-200 p-5 hover:border-primary hover:bg-slate-50 transition-all">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="material-symbols-outlined text-primary">add_task</span>
+                <h4 class="font-bold text-on-surface">Add Project</h4>
+              </div>
+              <p class="text-sm text-on-surface-variant">Create a new project with image upload.</p>
+            </a>
+
+            <a href="/admin/services" class="block rounded-xl border border-slate-200 p-5 hover:border-primary hover:bg-slate-50 transition-all">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="material-symbols-outlined text-primary">engineering</span>
+                <h4 class="font-bold text-on-surface">All Services</h4>
+              </div>
+              <p class="text-sm text-on-surface-variant">Manage current service records and content.</p>
+            </a>
+
+            <a href="/admin/messages" class="block rounded-xl border border-slate-200 p-5 hover:border-primary hover:bg-slate-50 transition-all">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="material-symbols-outlined text-primary">mail</span>
+                <h4 class="font-bold text-on-surface">Messages</h4>
+              </div>
+              <p class="text-sm text-on-surface-variant">Read contact form submissions from visitors.</p>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Side Insights -->
+      <div class="space-y-6">
+        <a href="/admin/add-project" class="flex items-center gap-4 p-5 rounded-xl bg-surface-container-lowest group hover:bg-primary transition-all duration-300 shadow-[0px_12px_32px_rgba(25,28,29,0.02)]">
+          <div class="w-12 h-12 rounded-lg bg-primary-container/10 flex items-center justify-center text-primary group-hover:bg-white/20 group-hover:text-white">
+            <span class="material-symbols-outlined">add_task</span>
+          </div>
+          <div class="text-left">
+            <p class="font-bold text-on-surface group-hover:text-white">Add New Project</p>
+            <p class="text-xs text-on-surface-variant group-hover:text-white/80">Create a new case study or portfolio item</p>
+          </div>
+        </a>
+
+        <a href="/admin/add-service" class="flex items-center gap-4 p-5 rounded-xl bg-surface-container-lowest group hover:bg-tertiary transition-all duration-300 shadow-[0px_12px_32px_rgba(25,28,29,0.02)]">
+          <div class="w-12 h-12 rounded-lg bg-tertiary-container/10 flex items-center justify-center text-tertiary group-hover:bg-white/20 group-hover:text-white">
+            <span class="material-symbols-outlined">settings_input_component</span>
+          </div>
+          <div class="text-left">
+            <p class="font-bold text-on-surface group-hover:text-white">Add New Service</p>
+            <p class="text-xs text-on-surface-variant group-hover:text-white/80">Insert a new service with full details</p>
+          </div>
+        </a>
+
+        <div class="bg-gradient-to-br from-primary to-primary-container rounded-xl p-6 text-white overflow-hidden relative shadow-xl shadow-primary/20">
+          <div class="relative z-10">
+            <h4 class="font-bold text-lg mb-2">Admin Tip</h4>
+            <p class="text-sm text-white/90 leading-relaxed mb-4">
+              Keep your projects and services updated regularly so the public website always reflects current company offerings.
+            </p>
+            <a href="/admin/projects" class="inline-block bg-white text-primary px-4 py-2 rounded-lg text-xs font-bold hover:bg-opacity-90 transition-all">
+              Review Projects
+            </a>
+          </div>
+
+          <div class="absolute -right-4 -bottom-4 opacity-20">
+            <span class="material-symbols-outlined text-[120px]">insights</span>
+          </div>
+        </div>
+
+        <div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0px_12px_32px_rgba(25,28,29,0.02)]">
+          <h4 class="font-bold text-on-surface mb-4">Admin Modules</h4>
+
+          <div class="space-y-3 text-sm">
+            <div class="flex items-center justify-between">
+              <span class="text-on-surface-variant">Projects</span>
+              <span class="font-semibold text-primary">Active</span>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <span class="text-on-surface-variant">Services</span>
+              <span class="font-semibold text-primary">Active</span>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <span class="text-on-surface-variant">Messages</span>
+              <span class="font-semibold text-primary">Active</span>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <span class="text-on-surface-variant">Login Access</span>
+              <span class="font-semibold text-green-600">Protected</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Floating Button -->
+  <a href="/admin/add-project" class="fixed bottom-8 right-8 w-14 h-14 gradient-brand text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all z-50">
+    <span class="material-symbols-outlined text-3xl">rocket_launch</span>
+  </a>
+</body>
+</html>

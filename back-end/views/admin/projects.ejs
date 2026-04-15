@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Projects List - Vulcan ICT CMS</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-fixed": "#2c1700",
+            "outline": "#6d7980",
+            "surface-dim": "#d9dadb",
+            "on-primary-fixed": "#001e2c",
+            "surface-container-high": "#e7e8e9",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed": "#ffdcbc",
+            "tertiary-container": "#f59a24",
+            "inverse-surface": "#2e3132",
+            "secondary-fixed-dim": "#a0cce7",
+            "inverse-on-surface": "#f0f1f2",
+            "surface-container": "#edeeef",
+            "inverse-primary": "#78d1ff",
+            "surface-container-highest": "#e1e3e4",
+            "primary-container": "#06bcf9",
+            "background": "#f8f9fa",
+            "error": "#ba1a1a",
+            "on-secondary-fixed-variant": "#1c4c62",
+            "on-secondary-container": "#3a667d",
+            "primary-fixed": "#c2e8ff",
+            "on-surface": "#191c1d",
+            "on-secondary": "#ffffff",
+            "on-primary-fixed-variant": "#004d68",
+            "on-primary": "#ffffff",
+            "outline-variant": "#bcc8d1",
+            "surface-bright": "#f8f9fa",
+            "surface": "#f8f9fa",
+            "error-container": "#ffdad6",
+            "secondary": "#37637b",
+            "primary": "#006689",
+            "tertiary-fixed-dim": "#ffb86c",
+            "on-background": "#191c1d",
+            "on-surface-variant": "#3d484f",
+            "surface-variant": "#e1e3e4",
+            "surface-container-low": "#f3f4f5",
+            "on-primary-container": "#004862",
+            "on-error": "#ffffff",
+            "on-secondary-fixed": "#001e2c",
+            "primary-fixed-dim": "#78d1ff",
+            "secondary-container": "#b6e3fe",
+            "on-tertiary-fixed-variant": "#683c00",
+            "surface-tint": "#006689",
+            "on-tertiary-container": "#623800",
+            "on-error-container": "#93000a",
+            "secondary-fixed": "#c2e8ff",
+            "tertiary": "#895100",
+            "on-tertiary": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "fontFamily": {
+            "headline": ["Manrope"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      vertical-align: middle;
+    }
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, .font-headline { font-family: 'Manrope', sans-serif; }
+    .gradient-primary { background: linear-gradient(135deg, #006689 0%, #06bcf9 100%); }
+    .glass-panel { backdrop-filter: blur(24px); }
+  </style>
+</head>
+
+<body class="bg-background text-on-surface">
+  <!-- SideNavBar Component -->
+  <aside class="h-screen w-64 fixed left-0 top-0 overflow-y-auto bg-slate-100 dark:bg-slate-900 flex flex-col py-6 px-4 z-50">
+    <div class="mb-10 px-2">
+      <h1 class="text-2xl font-bold tracking-tighter text-slate-900 dark:text-white">Vulcan ICT</h1>
+      <p class="text-xs text-slate-500 font-medium uppercase tracking-widest mt-1">Admin Dashboard</p>
+    </div>
+
+    <nav class="flex-1 space-y-1">
+      <a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-500 dark:text-slate-400 font-manrope text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200 scale-95 active:scale-90 transition-transform" href="/admin">
+        <span class="material-symbols-outlined">dashboard</span>
+        Dashboard
+      </a>
+
+       <a class="flex items-center gap-3 px-3 py-2.5 rounded-xl font-manrope text-sm font-medium text-cyan-600 dark:text-cyan-400 font-semibold bg-slate-200/50 dark:bg-slate-800/50 scale-95 active:scale-90 transition-transform" href="/admin/projects">
+        <span class="material-symbols-outlined">folder_special</span>
+        Projects
+      </a>
+
+      <a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-500 dark:text-slate-400 font-manrope text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200 scale-95 active:scale-90 transition-transform" href="/admin/services">
+        <span class="material-symbols-outlined">engineering</span>
+        Services
+      </a>
+
+      <a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-500 dark:text-slate-400 font-manrope text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200 scale-95 active:scale-90 transition-transform" href="/admin/messages">
+        <span class="material-symbols-outlined">mail</span>
+        Messages
+      </a>
+    </nav>
+
+    <div class="pt-6 mt-6 border-t border-slate-200 space-y-1">
+      <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:bg-slate-200 transition-colors duration-200" href="/admin/logout">
+        <span class="material-symbols-outlined">logout</span>
+        <span class="text-sm font-medium">Logout</span>
+      </a>
+    </div>
+
+    <div class="mt-8 flex items-center gap-3 px-2">
+      <div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-white text-sm font-bold">
+        A
+      </div>
+      <div>
+        <p class="text-xs font-bold text-slate-900">Admin User</p>
+        <p class="text-[10px] text-slate-500">Vulcan ICT Admin</p>
+      </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="ml-64 min-h-screen relative">
+    <!-- TopAppBar Component -->
+    <header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 z-40 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-800/50 flex justify-between items-center px-8">
+      <div class="flex items-center gap-6 flex-1">
+        <div class="relative w-full max-w-md group">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-cyan-500 transition-colors">search</span>
+          <input class="w-full bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 text-sm font-body focus:ring-2 focus:ring-primary-container/20 focus:bg-surface-container-lowest transition-all" placeholder="Search projects, clients..." type="text"/>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2 pr-4 border-r border-slate-200 dark:border-slate-800">
+          <button class="p-2 text-slate-600 dark:text-slate-400 hover:text-cyan-500 transition-all" type="button">
+            <span class="material-symbols-outlined">notifications</span>
+          </button>
+          <button class="p-2 text-slate-600 dark:text-slate-400 hover:text-cyan-500 transition-all" type="button">
+            <span class="material-symbols-outlined">help_outline</span>
+          </button>
+        </div>
+
+        <div class="flex items-center gap-3 ml-2">
+          <span class="text-sm font-medium text-slate-600 hidden lg:block">Support</span>
+
+          <a href="/admin/add-project" class="gradient-primary text-white text-sm font-semibold py-2 px-4 rounded-xl shadow-lg shadow-cyan-500/20 active:scale-95 transition-transform">
+            New Project
+          </a>
+
+          <img alt="User Profile" class="w-8 h-8 rounded-full border-2 border-primary-container/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8Iz1Fpt6HXRInv2LkUskYaQHsuEbdjdRXDClfsBNw-JxK5eytH34KvAHtD84dFTsJAQ-mTbwkQRpLBGbdLSHdQfKnWN_oKtaNvzY0M5a0pNGFHSoiL-DiO2zDjMlcpl0fh9iCq0GW4RixyNKEeG4Brz-T2N_82kfDYjJKLANJpL92gD2I6hOyZhL6nl1AULGEtavP1uLuyjxUys1ZRMRoMUoy4aGGs7l4xMyvyHVy4pbY555Sa99AxqrRj8V827lVnj2XAV6qt7Pm"/>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Canvas -->
+    <section class="pt-24 pb-12 px-8">
+      <!-- Header Section -->
+      <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <h2 class="text-3xl font-extrabold tracking-tight text-on-surface mb-1">Project Directory</h2>
+          <p class="text-on-surface-variant text-sm max-w-lg">Manage and monitor all ongoing digital transformation initiatives across Vulcan ICT clients.</p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <div class="flex bg-surface-container-high p-1 rounded-xl">
+            <button class="px-4 py-1.5 rounded-lg text-xs font-semibold bg-surface-container-lowest text-primary shadow-sm" type="button">Active</button>
+            <button class="px-4 py-1.5 rounded-lg text-xs font-semibold text-on-surface-variant hover:text-on-surface transition-colors" type="button">Archived</button>
+          </div>
+
+          <button class="flex items-center gap-2 px-4 py-2 bg-surface-container-lowest border border-outline-variant/15 text-sm font-medium rounded-xl hover:bg-surface-container-low transition-colors" type="button">
+            <span class="material-symbols-outlined text-lg">filter_list</span>
+            Filters
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Data Table Container -->
+      <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/10">
+        <% if (projects && projects.length > 0) { %>
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-surface-container-low text-on-surface-variant text-[11px] uppercase tracking-widest font-bold">
+                <th class="px-6 py-5 font-headline">Project Details</th>
+                <th class="px-6 py-5 font-headline">Client</th>
+                <th class="px-6 py-5 font-headline">Category</th>
+                <th class="px-6 py-5 font-headline">Timeline</th>
+                <th class="px-6 py-5 font-headline">Status</th>
+                <th class="px-6 py-5 text-right font-headline">Actions</th>
+              </tr>
+            </thead>
+
+            <tbody class="divide-y divide-surface-container">
+              <% projects.forEach((project) => { %>
+                <tr class="group hover:bg-surface-container-low/30 transition-colors">
+                  <td class="px-6 py-5">
+                    <div class="flex items-center gap-4">
+                      <div class="w-16 h-12 rounded-lg overflow-hidden bg-slate-100 flex-shrink-0 border border-outline-variant/20">
+                        <% if (project.image) { %>
+                          <img
+                            class="w-full h-full object-cover"
+                            src="/uploads/projects/<%= project.image %>"
+                            alt="<%= project.title %>"
+                          />
+                        <% } else { %>
+                          <div class="w-full h-full flex items-center justify-center text-slate-400">
+                            <span class="material-symbols-outlined text-lg">image</span>
+                          </div>
+                        <% } %>
+                      </div>
+
+                      <div>
+                        <div class="font-semibold text-on-surface text-sm"><%= project.title %></div>
+                        <div class="text-xs text-on-surface-variant">Project Record</div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="px-6 py-5">
+                    <div class="text-sm font-medium text-on-surface"><%= project.client || "-" %></div>
+                  </td>
+
+                  <td class="px-6 py-5">
+                    <span class="px-2.5 py-1 rounded-full bg-secondary-container/30 text-on-secondary-container text-[10px] font-bold uppercase tracking-wider">
+                      <%= project.category || "-" %>
+                    </span>
+                  </td>
+
+                  <td class="px-6 py-5 text-sm text-on-surface-variant">
+                    <%= project.created_at %>
+                  </td>
+
+                  <td class="px-6 py-5">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
+                      <span class="text-xs font-semibold text-cyan-600">Active</span>
+                    </div>
+                  </td>
+
+                  <td class="px-6 py-5 text-right">
+                    <div class="flex justify-end gap-2">
+                      <a
+                        href="/admin/edit-project/<%= project.id %>"
+                        class="p-2 hover:bg-primary-container/10 text-primary rounded-lg transition-colors"
+                        title="Edit"
+                      >
+                        <span class="material-symbols-outlined text-lg">edit</span>
+                      </a>
+
+                      <a
+                        href="/admin/delete-project/<%= project.id %>"
+                        onclick="return confirm('Are you sure?')"
+                        class="p-2 hover:bg-error-container/20 text-error rounded-lg transition-colors"
+                        title="Delete"
+                      >
+                        <span class="material-symbols-outlined text-lg">delete</span>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+
+          <!-- Table Footer/Pagination -->
+          <div class="px-6 py-4 bg-surface-container-low/30 flex items-center justify-between">
+            <p class="text-xs text-on-surface-variant font-medium">
+              Showing 1 to <%= projects.length %> of <%= projects.length %> results
+            </p>
+
+            <div class="flex gap-1">
+              <button class="p-2 rounded-lg hover:bg-surface-container-high transition-colors text-on-surface-variant" type="button">
+                <span class="material-symbols-outlined text-lg">chevron_left</span>
+              </button>
+              <button class="w-8 h-8 rounded-lg bg-primary text-white text-xs font-bold shadow-md shadow-primary/20" type="button">1</button>
+              <button class="p-2 rounded-lg hover:bg-surface-container-high transition-colors text-on-surface-variant" type="button">
+                <span class="material-symbols-outlined text-lg">chevron_right</span>
+              </button>
+            </div>
+          </div>
+        <% } else { %>
+          <div class="px-8 py-16 text-center">
+            <div class="mx-auto mb-4 w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center text-slate-400">
+              <span class="material-symbols-outlined text-3xl">folder_off</span>
+            </div>
+            <h3 class="text-lg font-bold text-on-surface mb-2">No projects found</h3>
+            <p class="text-sm text-on-surface-variant mb-6">There are no project records yet. Start by creating your first project.</p>
+            <a href="/admin/add-project" class="inline-flex items-center gap-2 px-4 py-2 gradient-primary text-white text-sm font-semibold rounded-xl shadow-lg shadow-cyan-500/20">
+              <span class="material-symbols-outlined text-lg">add</span>
+              Add New Project
+            </a>
+          </div>
+        <% } %>
+      </div>
+
+      <!-- Summary Bento Grid Section -->
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10 shadow-sm flex flex-col justify-between">
+          <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-4">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">assignment</span>
+          </div>
+          <div>
+            <div class="text-2xl font-extrabold text-on-surface tracking-tight"><%= projects ? projects.length : 0 %></div>
+            <div class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Total Projects</div>
+          </div>
+        </div>
+
+        <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10 shadow-sm flex flex-col justify-between">
+          <div class="w-10 h-10 rounded-full bg-cyan-100 flex items-center justify-center text-cyan-600 mb-4">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+          </div>
+          <div>
+            <div class="text-2xl font-extrabold text-on-surface tracking-tight"><%= projects ? projects.length : 0 %></div>
+            <div class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Active Records</div>
+          </div>
+        </div>
+
+        <div class="md:col-span-2 gradient-primary p-6 rounded-xl shadow-lg shadow-primary/20 flex items-center justify-between relative overflow-hidden group">
+          <div class="relative z-10">
+            <h3 class="text-white text-xl font-bold mb-2">Portfolio Overview</h3>
+            <p class="text-white/80 text-sm max-w-xs mb-4">Manage, update, and organize all website project records from one place.</p>
+            <a href="/admin/add-project" class="inline-block bg-white text-primary text-xs font-bold px-4 py-2 rounded-lg hover:bg-white/90 transition-colors uppercase tracking-widest">
+              Add Project
+            </a>
+          </div>
+          <span class="material-symbols-outlined text-[120px] text-white/10 absolute -right-4 -bottom-4 rotate-12 group-hover:scale-110 transition-transform duration-500">insights</span>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

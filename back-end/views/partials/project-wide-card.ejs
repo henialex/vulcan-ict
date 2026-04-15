@@ -1,0 +1,73 @@
+<div class="row mb-5">
+  <div class="col-12">
+    <div class="project_card <%= project.title.includes('BunaLink') ? 'bunalink' : 'lumos' %>">
+      <div class="row align-items-center">
+        <div class="col-lg-4">
+          <div class="project_image">
+            <img
+              src="<%= project.image %>"
+              alt="<%= project.title %>"
+              class="project_case_image"
+            >
+
+            <div class="project_overlay">
+              <div class="project_tech">
+                <% if (project.tech_tags) { %>
+                  <% project.tech_tags.split("|").forEach((tag) => { %>
+                    <span class="tech_tag"><%= tag.trim() %></span>
+                  <% }) %>
+                <% } %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-8">
+          <div class="project_content">
+            <h4><%= project.title %></h4>
+
+            <% if (project.client || project.scope) { %>
+              <p class="project_type">
+                <% if (project.client) { %>
+                  <strong>Client:</strong> <%= project.client %>
+                <% } %>
+                <% if (project.scope) { %>
+                  | <strong>Scope:</strong> <%= project.scope %>
+                <% } %>
+              </p>
+            <% } %>
+
+            <p class="project_description"><%= project.description %></p>
+
+      <% if (project.modules) { %>
+  <% const modulesArray = project.modules.split("|"); %>
+  <% const moduleIconsArray = project.module_icons ? project.module_icons.split("|") : []; %>
+
+  <div class="project_modules">
+    <% modulesArray.forEach((module, index) => { %>
+      <div class="module_item">
+        <i class="<%= moduleIconsArray[index] ? moduleIconsArray[index].trim() : 'fa fa-check' %>"></i>
+        <span><%= module.trim() %></span>
+      </div>
+    <% }) %>
+  </div>
+<% } %>
+<% if (project.features) { %>
+  <% const featuresArray = project.features.split("|"); %>
+  <% const featureIconsArray = project.feature_icons ? project.feature_icons.split("|") : []; %>
+
+  <div class="project_features_lumos">
+    <% featuresArray.forEach((feature, index) => { %>
+      <div class="feature_item_lumos">
+        <i class="<%= featureIconsArray[index] ? featureIconsArray[index].trim() : 'fa fa-check' %>"></i>
+        <span><%= feature.trim() %></span>
+      </div>
+    <% }) %>
+  </div>
+<% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

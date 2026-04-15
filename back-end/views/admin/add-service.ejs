@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Add Service - Vulcan ICT CMS</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-fixed": "#2c1700",
+            "outline": "#6d7980",
+            "surface-dim": "#d9dadb",
+            "on-primary-fixed": "#001e2c",
+            "surface-container-high": "#e7e8e9",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed": "#ffdcbc",
+            "tertiary-container": "#f59a24",
+            "inverse-surface": "#2e3132",
+            "secondary-fixed-dim": "#a0cce7",
+            "inverse-on-surface": "#f0f1f2",
+            "surface-container": "#edeeef",
+            "inverse-primary": "#78d1ff",
+            "surface-container-highest": "#e1e3e4",
+            "primary-container": "#06bcf9",
+            "background": "#f8f9fa",
+            "error": "#ba1a1a",
+            "on-secondary-fixed-variant": "#1c4c62",
+            "on-secondary-container": "#3a667d",
+            "primary-fixed": "#c2e8ff",
+            "on-surface": "#191c1d",
+            "on-secondary": "#ffffff",
+            "on-primary-fixed-variant": "#004d68",
+            "on-primary": "#ffffff",
+            "outline-variant": "#bcc8d1",
+            "surface-bright": "#f8f9fa",
+            "surface": "#f8f9fa",
+            "error-container": "#ffdad6",
+            "secondary": "#37637b",
+            "primary": "#006689",
+            "tertiary-fixed-dim": "#ffb86c",
+            "on-background": "#191c1d",
+            "on-surface-variant": "#3d484f",
+            "surface-variant": "#e1e3e4",
+            "surface-container-low": "#f3f4f5",
+            "on-primary-container": "#004862",
+            "on-error": "#ffffff",
+            "on-secondary-fixed": "#001e2c",
+            "primary-fixed-dim": "#78d1ff",
+            "secondary-container": "#b6e3fe",
+            "on-tertiary-fixed-variant": "#683c00",
+            "surface-tint": "#006689",
+            "on-tertiary-container": "#623800",
+            "on-error-container": "#93000a",
+            "secondary-fixed": "#c2e8ff",
+            "tertiary": "#895100",
+            "on-tertiary": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "fontFamily": {
+            "headline": ["Manrope"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          }
+        },
+      },
+    }
+  </script>
+
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      vertical-align: middle;
+    }
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    .gradient-btn {
+      background: linear-gradient(135deg, #006689 0%, #06bcf9 100%);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface">
+  <!-- SideNavBar -->
+  <aside class="h-screen w-64 fixed left-0 top-0 overflow-y-auto bg-slate-100 dark:bg-slate-900 flex flex-col py-6 px-4 z-50">
+    <div class="mb-10 px-2">
+      <h1 class="text-2xl font-bold tracking-tighter text-slate-900 dark:text-white">Vulcan ICT</h1>
+      <p class="font-manrope text-sm font-medium text-slate-500 dark:text-slate-400">Admin Dashboard</p>
+    </div>
+
+    <nav class="flex-1 space-y-1">
+      <a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-500 dark:text-slate-400 font-manrope text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200" href="/admin">
+        <span class="material-symbols-outlined">dashboard</span> Dashboard
+      </a>
+
+      <a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-500 dark:text-slate-400 font-manrope text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200" href="/admin/projects">
+        <span class="material-symbols-outlined">folder_special</span> Projects
+      </a>
+
+      <a class="flex items-center gap-3 px-3 py-2 rounded-xl text-cyan-600 dark:text-cyan-400 font-semibold font-manrope text-sm hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200" href="/admin/services">
+        <span class="material-symbols-outlined">engineering</span> Services
+      </a>
+
+      <a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-500 dark:text-slate-400 font-manrope text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200" href="/admin/messages">
+        <span class="material-symbols-outlined">mail</span> Messages
+      </a>
+    </nav>
+
+    <div class="mt-auto pt-6 space-y-1">
+      <a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-500 dark:text-slate-400 font-manrope text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200" href="/admin/logout">
+        <span class="material-symbols-outlined">logout</span> Logout
+      </a>
+    </div>
+  </aside>
+
+  <!-- TopAppBar -->
+  <header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl z-40 border-b border-slate-200/50 dark:border-slate-800/50 flex justify-between items-center px-8">
+    <div class="flex items-center gap-4 flex-1">
+      <div class="relative w-full max-w-md">
+        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+        <input class="w-full bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary-container transition-all" placeholder="Search services..." type="text"/>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-6">
+      <div class="flex items-center gap-4 text-slate-600">
+        <button class="hover:text-cyan-500 transition-all" type="button"><span class="material-symbols-outlined">notifications</span></button>
+        <button class="hover:text-cyan-500 transition-all" type="button"><span class="material-symbols-outlined">help_outline</span></button>
+        <span class="text-sm font-medium cursor-pointer hover:text-cyan-500 transition-all">Support</span>
+      </div>
+
+      <a href="/admin/add-project" class="gradient-btn text-white px-5 py-2 rounded-xl text-sm font-semibold shadow-lg shadow-primary/20 scale-100 active:scale-95 transition-transform">
+        New Project
+      </a>
+
+      <div class="w-8 h-8 rounded-full bg-slate-200 overflow-hidden border border-slate-200">
+        <img class="w-full h-full object-cover" alt="Admin avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1bqSutX86-NO2ZfSD54x42UZHwqKNxBoGcws-iRD0XaUJXsGi6bVbpmfM4d5dP189CPsSNciZdctdtIumhK1PJ4o-Vu9H7Zm6tFbmQWEPBmx1ht5TGWOrlV4Ou6uXmAaNi6eqgBPNOYC8dmvOPIp8KrvuFY0zyOvYYKydt1qV68wG0rBBVGT-ylbZSlzo7nPa_JGYPWfZ30oYPANuYafwnK2SUMkVcEAxwlzzC_cJW6NdaaYOL5So_QN5gvbLADLjsbLl3LH2RkGf"/>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Canvas -->
+  <main class="ml-64 pt-24 pb-16 px-8 min-h-screen">
+    <div class="max-w-5xl mx-auto">
+
+      <% if (success) { %>
+        <div class="mb-8 rounded-xl border border-green-200 bg-green-50 px-5 py-4 text-sm font-medium text-green-700">
+          Service added successfully!
+        </div>
+      <% } %>
+
+      <form action="/admin/add-service" method="POST">
+        <!-- Page Header -->
+        <div class="flex justify-between items-end mb-10">
+          <div>
+            <nav class="flex items-center gap-2 text-xs text-slate-500 mb-2">
+              <a href="/admin/services">Services</a>
+              <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+              <span class="text-primary font-medium">Add New Service</span>
+            </nav>
+            <h2 class="text-4xl font-extrabold tracking-tight text-on-surface">Service Architect</h2>
+            <p class="text-on-surface-variant mt-2 max-w-lg">Define a new technological offering with high-precision content blocks for our client ecosystem.</p>
+          </div>
+
+          <div class="flex gap-3">
+            <a href="/admin/services" class="px-6 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-200 transition-all">
+              Discard Draft
+            </a>
+
+            <button type="submit" class="gradient-btn text-white px-8 py-2.5 rounded-xl text-sm font-semibold shadow-xl shadow-primary/20 hover:-translate-y-1 transition-all">
+              Publish Service
+            </button>
+          </div>
+        </div>
+
+        <!-- Form Content: Bento Layout -->
+        <div class="grid grid-cols-12 gap-6">
+          <!-- Main Configuration (Left Column) -->
+          <div class="col-span-12 lg:col-span-8 space-y-6">
+            <!-- Core Details Card -->
+            <section class="bg-surface-container-lowest rounded-xl p-8 transition-all">
+              <h3 class="text-lg font-bold mb-6 flex items-center gap-2">
+                <span class="w-1.5 h-6 bg-primary rounded-full"></span>
+                Core Specification
+              </h3>
+
+              <div class="space-y-6">
+                <div class="group">
+                  <label class="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-2">Service Title</label>
+                  <input
+                    class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 focus:bg-white focus:ring-0 border-b-2 border-transparent focus:border-primary transition-all text-lg font-medium"
+                    placeholder="e.g. Enterprise Cloud Infrastructure"
+                    type="text"
+                    name="title"
+                    required
+                  />
+                </div>
+
+                <div class="grid grid-cols-2 gap-6">
+                  <div>
+                    <label class="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-2">Category</label>
+                    <input
+                      class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 focus:bg-white focus:ring-0 border-b-2 border-transparent focus:border-primary transition-all"
+                      type="text"
+                      name="category"
+                      placeholder="e.g. Cloud Solutions"
+                    />
+                  </div>
+
+                  <div>
+                    <label class="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-2">Icon Selection</label>
+                    <div class="flex items-center gap-3 bg-surface-container-low rounded-lg px-4 py-3">
+                      <span class="material-symbols-outlined text-primary">cloud</span>
+                      <input
+                        class="bg-transparent border-none p-0 focus:ring-0 w-full text-sm"
+                        placeholder="cloud, lock, speed..."
+                        type="text"
+                        name="icon_class"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-2">Service Overview (Description)</label>
+                  <textarea
+                    class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 focus:bg-white focus:ring-0 border-b-2 border-transparent focus:border-primary transition-all resize-none"
+                    placeholder="Describe the service essence..."
+                    rows="4"
+                    name="description"
+                    required
+                  ></textarea>
+                </div>
+              </div>
+            </section>
+
+            <!-- Strategic Content Card -->
+            <section class="bg-surface-container-lowest rounded-xl p-8">
+              <h3 class="text-lg font-bold mb-6 flex items-center gap-2">
+                <span class="w-1.5 h-6 bg-tertiary-container rounded-full"></span>
+                Value Proposition
+              </h3>
+
+              <div class="space-y-6">
+                <div class="grid grid-cols-2 gap-6">
+                  <div>
+                    <label class="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-2">The Problem</label>
+                    <textarea
+                      class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 focus:bg-white focus:ring-0 border-b-2 border-transparent focus:border-primary transition-all text-sm"
+                      placeholder="What pain point does this solve?"
+                      rows="3"
+                      name="problem"
+                    ></textarea>
+                  </div>
+
+                  <div>
+                    <label class="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-2">Target Audience</label>
+                    <textarea
+                      class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 focus:bg-white focus:ring-0 border-b-2 border-transparent focus:border-primary transition-all text-sm"
+                      placeholder="Who is this specifically for?"
+                      rows="3"
+                      name="target_audience"
+                    ></textarea>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-2">Why Trust Us?</label>
+                  <input
+                    class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 focus:bg-white focus:ring-0 border-b-2 border-transparent focus:border-primary transition-all text-sm"
+                    placeholder="Our unique authority or guarantee..."
+                    type="text"
+                    name="trust_reason"
+                  />
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <!-- Features & Assets (Right Column) -->
+          <div class="col-span-12 lg:col-span-4 space-y-6">
+            <!-- Features List Card -->
+            <section class="bg-surface-container-lowest rounded-xl p-6 h-fit">
+              <div class="flex justify-between items-center mb-6">
+                <h3 class="text-sm font-bold uppercase tracking-widest text-slate-400">Key Features</h3>
+              </div>
+
+              <div class="space-y-3">
+                <textarea
+                  class="w-full min-h-[180px] bg-transparent border border-slate-200 rounded-lg text-sm font-medium focus:ring-0 p-3 resize-none"
+                  name="features"
+                  placeholder="Enter features separated with |&#10;&#10;Example:&#10;High-Speed Deployment | End-to-End Encryption | Real-time Analytics"
+                ></textarea>
+
+                <div class="pt-4 mt-4 border-t border-slate-100">
+                  <p class="text-[10px] text-slate-400 font-medium italic">Features appear as bullet points on the public service page. Separate each feature with |</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- Preview Thumbnail Card -->
+            <section class="bg-surface-container-lowest rounded-xl p-6">
+              <h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4">Service Visual</h3>
+              <div class="aspect-video rounded-lg bg-surface-container-low border-2 border-dashed border-outline-variant flex flex-col items-center justify-center cursor-pointer hover:bg-surface-container transition-all group overflow-hidden relative">
+                <img class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:scale-105 transition-transform" alt="Service visual placeholder" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3ZC4soKJ6G-QOeCy-H21-iVYiLrOaKDbkQvZqiM_LSN3NjU_RlUeAqc8sOmtO19Co9gYX4Rvx-aXtrAWsrJwah0LfSo-iZjmBCqMfygJQZ2Bq83TpTa5H9jTIOPQfWUOnYgvpnbWi2l34kDSlPKqIFjx1Hmyb9wP4saVJYnXC5mbM0XtbzxJUEcV52Zo-siklVfug0E0JsZwIAdmAVkMHgI4OXh-7CvJ1tU6P-3fKPHecSQDS-lTSG-G0AknJuQLrGuP0GJ5Q5UOq"/>
+                <div class="relative z-10 flex flex-col items-center">
+                  <span class="material-symbols-outlined text-3xl text-slate-400 group-hover:text-primary transition-colors">add_photo_alternate</span>
+                  <span class="text-xs font-semibold text-slate-500 mt-2">Display Placeholder</span>
+                </div>
+              </div>
+            </section>
+
+            <!-- Quick Status -->
+            <section class="bg-primary/5 rounded-xl p-6 border border-primary/10">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-bold text-primary uppercase tracking-widest">Visibility</span>
+                <div class="w-10 h-5 bg-primary rounded-full relative p-1 cursor-pointer">
+                  <div class="w-3 h-3 bg-white rounded-full absolute right-1 top-1"></div>
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <div class="flex items-center gap-2 text-xs text-slate-600">
+                  <span class="material-symbols-outlined text-[16px] text-green-500">check_circle</span> SEO Optimization Ready
+                </div>
+                <div class="flex items-center gap-2 text-xs text-slate-600">
+                  <span class="material-symbols-outlined text-[16px] text-amber-500">info</span> Missing Alt Text
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <!-- Bottom Action Bar (Contextual) -->
+        <div class="mt-12 pt-8 border-t border-slate-200 flex justify-end gap-4">
+          <p class="mr-auto text-xs text-slate-400 self-center">Last auto-saved at 2:45 PM</p>
+
+          <a href="/admin/services" class="px-6 py-2 rounded-lg text-sm font-semibold border border-outline-variant text-on-surface-variant hover:bg-surface-container transition-all">
+            Save as Template
+          </a>
+
+          <button type="submit" class="gradient-btn text-white px-10 py-3 rounded-lg text-sm font-bold shadow-xl shadow-primary/30 hover:scale-[1.02] active:scale-95 transition-all">
+            Launch Service
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+</body>
+</html>

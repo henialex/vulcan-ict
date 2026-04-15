@@ -1,0 +1,73 @@
+<div class="col-lg-6 mb-4">
+  <div class="project_card featured">
+    <div class="project_image">
+      <img
+        src="<%= project.image %>"
+        alt="<%= project.title %>"
+        class="project_case_image"
+      >
+
+     <div class="project_overlay">
+  <div class="project_tech">
+    <% if (project.tech_tags) { %>
+      <% project.tech_tags.split("|").forEach((tag) => { %>
+        <span class="tech_tag"><%= tag.trim() %></span>
+      <% }) %>
+    <% } %>
+  </div>
+</div>
+    </div>
+
+    <div class="project_content">
+      <h4><%= project.title %></h4>
+
+      <p class="project_type">
+        <% if (project.client) { %>
+          <strong>Client:</strong> <%= project.client %>
+        <% } %>
+        <% if (project.scope) { %>
+          | <strong>Scope:</strong> <%= project.scope %>
+        <% } %>
+      </p>
+
+      <p class="project_description"><%= project.description %></p>
+        
+        <% if (project.button_text && project.button_link) { %>
+  <div class="mt-3">
+    <a href="<%= project.button_link %>" class="main_btn_light"><%= project.button_text %></a>
+  </div>
+<% } %>
+
+      <% if (project.tech_approach) { %>
+        <div class="project_approach">
+          <h5>Technology Approach</h5>
+          <p><%= project.tech_approach %></p>
+        </div>
+      <% } %>
+
+      
+
+      <div class="project_features">
+        <% if (project.features) { %>
+          <% project.features.split("|").forEach((feature) => { %>
+            <span class="feature_item">
+              <i class="fa fa-check"></i> <%= feature.trim() %>
+            </span>
+          <% }) %>
+        <% } %>
+      </div>
+
+ <% const impactItemsArray = project.impact_items ? project.impact_items.split("|") : []; %>
+<% const impactIconsArray = project.impact_icons ? project.impact_icons.split("|") : []; %>
+
+<div class="project_impact">
+  <% impactItemsArray.forEach((item, index) => { %>
+    <div class="impact_item">
+      <i class="<%= impactIconsArray[index] ? impactIconsArray[index].trim() : 'fa fa-globe' %>"></i>
+      <span><%= item.trim() %></span>
+    </div>
+  <% }) %>
+</div>
+    </div>
+  </div>
+</div>

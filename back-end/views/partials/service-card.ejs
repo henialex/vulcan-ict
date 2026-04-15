@@ -1,0 +1,25 @@
+<div class="col-lg-6 col-md-6 mb-4">
+  <div class="service_card_modern">
+    <div class="service_icon_modern">
+      <i class="<%= service.icon_class %>"></i>
+    </div>
+
+    <div class="service_content">
+      <h4><%= service.title %></h4>
+
+      <p><strong>What problem it solves:</strong> <%= service.problem %></p>
+
+      <p><strong>Who it is for:</strong> <%= service.target_audience %></p>
+
+      <p><strong>Why Vulcan is trusted:</strong> <%= service.trust_reason %></p>
+
+      <ul class="service_features">
+        <% if (service.features) { %>
+          <% service.features.split("|").forEach((feature) => { %>
+            <li><i class="fa fa-check"></i> <%= feature.trim() %></li>
+          <% }) %>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</div>

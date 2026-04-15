@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Messages - Vulcan ICT CMS</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-fixed": "#2c1700",
+            "outline": "#6d7980",
+            "surface-dim": "#d9dadb",
+            "on-primary-fixed": "#001e2c",
+            "surface-container-high": "#e7e8e9",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed": "#ffdcbc",
+            "tertiary-container": "#f59a24",
+            "inverse-surface": "#2e3132",
+            "secondary-fixed-dim": "#a0cce7",
+            "inverse-on-surface": "#f0f1f2",
+            "surface-container": "#edeeef",
+            "inverse-primary": "#78d1ff",
+            "surface-container-highest": "#e1e3e4",
+            "primary-container": "#06bcf9",
+            "background": "#f8f9fa",
+            "error": "#ba1a1a",
+            "on-secondary-fixed-variant": "#1c4c62",
+            "on-secondary-container": "#3a667d",
+            "primary-fixed": "#c2e8ff",
+            "on-surface": "#191c1d",
+            "on-secondary": "#ffffff",
+            "on-primary-fixed-variant": "#004d68",
+            "on-primary": "#ffffff",
+            "outline-variant": "#bcc8d1",
+            "surface-bright": "#f8f9fa",
+            "surface": "#f8f9fa",
+            "error-container": "#ffdad6",
+            "secondary": "#37637b",
+            "primary": "#006689",
+            "tertiary-fixed-dim": "#ffb86c",
+            "on-background": "#191c1d",
+            "on-surface-variant": "#3d484f",
+            "surface-variant": "#e1e3e4",
+            "surface-container-low": "#f3f4f5",
+            "on-primary-container": "#004862",
+            "on-error": "#ffffff",
+            "on-secondary-fixed": "#001e2c",
+            "primary-fixed-dim": "#78d1ff",
+            "secondary-container": "#b6e3fe",
+            "on-tertiary-fixed-variant": "#683c00",
+            "surface-tint": "#006689",
+            "on-tertiary-container": "#623800",
+            "on-error-container": "#93000a",
+            "secondary-fixed": "#c2e8ff",
+            "tertiary": "#895100",
+            "on-tertiary": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "fontFamily": {
+            "headline": ["Manrope"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          }
+        },
+      },
+    }
+  </script>
+
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      vertical-align: middle;
+    }
+    .gradient-brand {
+      background: linear-gradient(135deg, #006689 0%, #06bcf9 100%);
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+</head>
+
+<body class="bg-background font-body text-on-surface">
+  <aside class="h-screen w-64 fixed left-0 top-0 overflow-y-auto bg-slate-100 dark:bg-slate-900 border-none flex flex-col h-full py-6 px-4 z-40">
+    <div class="mb-10 px-2">
+      <h1 class="text-2xl font-bold tracking-tighter text-slate-900 dark:text-white">Vulcan ICT</h1>
+      <p class="text-xs font-medium text-slate-500 uppercase tracking-widest mt-1">Admin Dashboard</p>
+    </div>
+
+    <nav class="flex-1 space-y-1">
+      <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200 rounded-xl group scale-95 active:scale-90 transition-transform" href="/admin">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span>Dashboard</span>
+      </a>
+
+      <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200 rounded-xl group scale-95 active:scale-90 transition-transform" href="/admin/projects">
+        <span class="material-symbols-outlined">folder_special</span>
+        <span>Projects</span>
+      </a>
+
+      <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200 rounded-xl group scale-95 active:scale-90 transition-transform" href="/admin/services">
+        <span class="material-symbols-outlined">engineering</span>
+        <span>Services</span>
+      </a>
+
+      <a class="flex items-center gap-3 px-4 py-3 text-cyan-600 dark:text-cyan-400 font-semibold font-manrope text-sm hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200 rounded-xl group scale-95 active:scale-90 transition-transform" href="/admin/messages">
+        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">mail</span>
+        <span>Messages</span>
+      </a>
+    </nav>
+
+    <div class="mt-auto pt-6 space-y-1 border-t border-slate-200/50 dark:border-slate-800/50">
+      <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-manrope text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200 rounded-xl scale-95 active:scale-90 transition-transform" href="/admin/logout">
+        <span class="material-symbols-outlined">logout</span>
+        <span>Logout</span>
+      </a>
+    </div>
+  </aside>
+
+  <header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-800/50 flex justify-between items-center px-8">
+    <div class="flex items-center gap-4 flex-1">
+      <div class="relative w-full max-w-md group">
+        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm">search</span>
+        <input class="w-full bg-surface-container-low border-none rounded-xl py-2 pl-10 pr-4 text-sm focus:ring-0 focus:bg-surface-container-lowest transition-all" placeholder="Search message history..." type="text"/>
+        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all group-focus-within:w-full"></div>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-6">
+      <div class="flex items-center gap-4">
+        <button class="text-slate-600 dark:text-slate-400 hover:text-cyan-500 transition-all" type="button">
+          <span class="material-symbols-outlined">notifications</span>
+        </button>
+        <button class="text-slate-600 dark:text-slate-400 hover:text-cyan-500 transition-all" type="button">
+          <span class="material-symbols-outlined">help_outline</span>
+        </button>
+      </div>
+
+      <div class="h-8 w-px bg-slate-200 dark:bg-slate-800"></div>
+
+      <div class="flex items-center gap-3">
+        <button class="text-sm font-manrope font-semibold text-primary hover:opacity-80 transition-opacity" type="button">Support</button>
+        <a href="/admin/add-project" class="gradient-brand text-white text-sm font-manrope font-semibold px-4 py-2 rounded-xl scale-95 active:scale-90 transition-transform shadow-sm">
+          New Project
+        </a>
+        <img alt="User Profile" class="w-8 h-8 rounded-full border border-outline-variant/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvkAUWvwaUsP822fkpENnlX8ztJiQ4NsVlmaUZRgeFGJnuikmB1czFkplsLIFKLWgBmzAduZbmOU7cNQwqKMpUP0sIxeq-ep5Kl1P2JDtzi57peRG4bHIeDcNiM4nPxNVz1rBJQBw5BkDmGAYkhvUsc_AblloyabbnMPtxY9xTS90DQWLlsD6fFgphV9hAC_lU5GIyDnzULqjVGEEAIFMOKTK3DXIYUUgKuDqnC-t3fTOpU1BiCF2m_aSnRBLGJvJNRpjK81jG4aXk"/>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-24 pl-72 pr-8 pb-12 min-h-screen">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-8 flex justify-between items-end">
+        <div>
+          <h2 class="text-3xl font-bold font-headline tracking-tight text-on-surface mb-1">Messages</h2>
+          <p class="text-on-surface-variant font-body">Manage and respond to client inquiries and project requests.</p>
+        </div>
+
+        <div class="flex gap-2 bg-surface-container rounded-xl p-1">
+          <button class="px-4 py-1.5 text-xs font-semibold rounded-lg bg-surface-container-lowest shadow-sm text-primary" type="button">All Messages</button>
+          <button class="px-4 py-1.5 text-xs font-semibold rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" type="button">Unread</button>
+          <button class="px-4 py-1.5 text-xs font-semibold rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" type="button">Archived</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-6 mb-8">
+        <div class="bg-surface-container-lowest rounded-xl p-0 overflow-hidden">
+          <% if (messages && messages.length > 0) { %>
+            <table class="w-full text-left border-collapse">
+              <thead class="bg-surface-container-low text-on-surface-variant text-xs font-semibold uppercase tracking-wider">
+                <tr>
+                  <th class="px-6 py-4 w-12">
+                    <input class="rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox"/>
+                  </th>
+                  <th class="px-6 py-4">Sender</th>
+                  <th class="px-6 py-4">Subject</th>
+                  <th class="px-6 py-4">Status</th>
+                  <th class="px-6 py-4 text-right">Date</th>
+                  <th class="px-6 py-4 text-right">Action</th>
+                </tr>
+              </thead>
+
+              <tbody class="divide-y divide-surface-container">
+                <% messages.forEach((msg) => { %>
+                  <tr class="group hover:bg-surface-container-low/50 transition-colors">
+                    <td class="px-6 py-5">
+                      <input class="rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox"/>
+                    </td>
+
+                    <td class="px-6 py-5">
+                      <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-bold text-sm">
+                          <%= (msg.name || "U").split(" ").map(word => word[0]).join("").slice(0,2).toUpperCase() %>
+                        </div>
+                        <div>
+                          <div class="font-semibold text-on-surface"><%= msg.name %></div>
+                          <div class="text-xs text-on-surface-variant"><%= msg.email %></div>
+                        </div>
+                      </div>
+                    </td>
+
+                    <td class="px-6 py-5">
+                      <div class="max-w-xs truncate font-medium text-on-surface"><%= msg.subject || "No Subject" %></div>
+                      <div class="text-xs text-on-surface-variant truncate"><%= msg.message %></div>
+                    </td>
+
+                    <td class="px-6 py-5">
+                      <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary-container/20 text-primary-fixed-dim">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+                        Message
+                      </span>
+                    </td>
+
+                    <td class="px-6 py-5 text-right text-sm text-on-surface-variant font-medium"><%= msg.created_at %></td>
+
+                    <td class="px-6 py-5 text-right">
+                      <button class="text-primary text-sm font-semibold hover:underline decoration-2 underline-offset-4" type="button">
+                        View Message
+                      </button>
+                    </td>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+
+            <div class="bg-surface-container-low px-6 py-4 flex items-center justify-between border-t border-outline-variant/10">
+              <span class="text-xs text-on-surface-variant font-medium tracking-tight">
+                Showing 1-<%= messages.length %> of <%= messages.length %> submissions
+              </span>
+
+              <div class="flex gap-1">
+                <button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-highest transition-colors text-on-surface-variant" type="button">
+                  <span class="material-symbols-outlined text-sm">chevron_left</span>
+                </button>
+                <button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-white text-xs font-bold" type="button">1</button>
+                <button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-highest transition-colors text-on-surface-variant" type="button">
+                  <span class="material-symbols-outlined text-sm">chevron_right</span>
+                </button>
+              </div>
+            </div>
+          <% } else { %>
+            <div class="flex flex-col items-center justify-center py-20 bg-surface-container-low/20">
+              <div class="w-24 h-24 mb-6 relative">
+                <div class="absolute inset-0 bg-primary/5 rounded-full animate-pulse"></div>
+                <div class="absolute inset-4 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+                  <span class="material-symbols-outlined !text-4xl">mail_off</span>
+                </div>
+              </div>
+              <h3 class="text-xl font-bold font-headline mb-2">No messages found</h3>
+              <p class="text-on-surface-variant mb-6 text-center max-w-xs">There are no contact messages available right now.</p>
+            </div>
+          <% } %>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-b-2 border-primary/10">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="p-3 bg-primary-container/10 rounded-xl text-primary">
+              <span class="material-symbols-outlined">mark_email_unread</span>
+            </div>
+            <div>
+              <h3 class="text-sm font-bold font-headline text-on-surface">Unread Rate</h3>
+              <p class="text-2xl font-bold text-primary"><%= messages ? messages.length : 0 %></p>
+            </div>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">Current visible contact message count in the admin inbox.</p>
+        </div>
+
+        <div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-b-2 border-secondary/10">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="p-3 bg-secondary-container/10 rounded-xl text-secondary">
+              <span class="material-symbols-outlined">speed</span>
+            </div>
+            <div>
+              <h3 class="text-sm font-bold font-headline text-on-surface">Response Queue</h3>
+              <p class="text-2xl font-bold text-secondary"><%= messages ? messages.length : 0 %></p>
+            </div>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">Track incoming inquiries and follow up from this inbox list.</p>
+        </div>
+
+        <div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-b-2 border-tertiary-container/10">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="p-3 bg-tertiary-container/10 rounded-xl text-tertiary">
+              <span class="material-symbols-outlined">trending_up</span>
+            </div>
+            <div>
+              <h3 class="text-sm font-bold font-headline text-on-surface">Inquiry Volume</h3>
+              <p class="text-2xl font-bold text-tertiary"><%= messages ? messages.length : 0 %></p>
+            </div>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">Message volume currently loaded into the admin message table.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="fixed bottom-8 right-8 z-50">
+    <a href="/admin" class="gradient-brand text-white w-14 h-14 rounded-full flex items-center justify-center shadow-xl hover:scale-105 active:scale-95 transition-all">
+      <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+    </a>
+  </div>
+</body>
+</html>

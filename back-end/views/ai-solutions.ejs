@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" type="image/png" href="/fav/favicon-32x32.png">
+        <link rel="shortcut icon" href="/favicon.ico">
+        <title>Vulcan ICT PLC - Digital Transformation & Systems Implementation</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="/css/bootstrap.css">
+        <link rel="stylesheet" href="/vendors/linericon/style.css">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/vendors/owl-carousel/owl.carousel.min.css">
+        <link rel="stylesheet" href="/vendors/lightbox/simpleLightbox.css">
+        <link rel="stylesheet" href="/vendors/nice-select/css/nice-select.css">
+        <link rel="stylesheet" href="/vendors/animate-css/animate.css">
+        <!-- main css -->
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/responsive.css">
+    </head>
+    <body>
+        
+       
+        <!--================Header Menu Area =================-->
+        <%- include("partials/navbar") %>
+        <!--================Header Menu Area =================-->
+
+		 <!--================Home Banner Area =================-->
+        <section class="banner_area">
+            <div class="banner_inner d-flex align-items-center">
+            	<div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+				<div class="container">
+					<div class="banner_content text-center">
+						<h2>AI-Solutions</h2>
+						<div class="page_link">
+							<a href="/">Home</a>
+							<a href="/ai-solutions">AI-Solutions</a>
+						</div>
+						
+					</div>
+				</div>
+            </div>
+        </section>
+        <!--================End Home Banner Area =================-->
+        
+        <!--================AI Integration Showcase =================-->
+        <section class="ai_showcase_area p_120">
+        	<div class="container">
+				<div class="main_title text-center">
+        			<h2>AI-Powered Digital Transformation</h2>
+					<p class="lead">Intelligent systems that enhance decision-making, automate processes, and deliver actionable insights for governments and enterprises.</p>
+</div>
+        		<div class="row align-items-center">
+        			<div class="col-12">
+        				<div class="ai_content">
+        					<p>Vulcan ICT integrates artificial intelligence into our digital platforms to enable predictive analytics, automated compliance monitoring, intelligent data processing, and enhanced user experiences. Our AI capabilities support real-time decision-making and long-term strategic planning.</p>
+        					<div class="ai-divider"></div>
+							<div class="ai_features-big">
+								
+  <div class="ai-card">
+    <img src="img/predictive-chart.png" class="ai-image">
+    <h5>Predictive Analytics</h5>
+    <p>AI-driven forecasting and trend analysis for strategic planning</p>
+  </div>
+
+  <div class="ai-card">
+    <img src="img/automated.png" class="ai-image">
+    <h5>Automated Compliance</h5>
+    <p>Intelligent monitoring and reporting for regulatory requirements</p>
+  </div>
+
+  <div class="ai-card">
+    <img src="img/database.png" class="ai-image">
+    <h5>Smart Data Processing</h5>
+    <p>Automated extraction and analysis of complex datasets</p>
+  </div>
+</div>
+        					<a class="main_btn mt-4" href="/contact">Contact Us</a>
+        				</div>
+        			</div>
+        		</div>
+        	</div>
+        </section>
+        <!--================End AI Integration Showcase =================-->
+      
+        
+        <!--================Footer Area =================-->
+       <%- include("partials/footer") %>
+        <!--================End Footer Area =================-->
+        
+        
+        
+        
+        
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="/js/jquery-3.2.1.min.js"></script>
+        <script src="/js/popper.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/stellar.js"></script>
+        <script src="/vendors/lightbox/simpleLightbox.min.js"></script>
+        <script src="/vendors/nice-select/js/jquery.nice-select.min.js"></script>
+        <script src="/vendors/isotope/imagesloaded.pkgd.min.js"></script>
+        <script src="/vendors/isotope/isotope-min.js"></script>
+        <script src="/vendors/owl-carousel/owl.carousel.min.js"></script>
+        <script src="/js/jquery.ajaxchimp.min.js"></script>
+        <script src="/vendors/counter-up/jquery.waypoints.min.js"></script>
+        <script src="/vendors/counter-up/jquery.counterup.min.js"></script>
+        <script src="/js/mail-script.js"></script>
+        <!--gmaps Js-->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+        <script src="/js/gmaps.min.js"></script>
+        <script src="/js/theme.js"></script>
+        <script src="/js/modern-interactions.js"></script>
+        <script>
+            // AI Robot Cursor Follower
+            (function() {
+                const robot = document.getElementById('ai_robot');
+                const robotContainer = document.querySelector('.ai_robot_container');
+                
+                if (!robot || !robotContainer) return;
+                
+                let mouseX = 0;
+                let mouseY = 0;
+                let targetX = 0;
+                let targetY = 0;
+                let currentX = 0;
+                let currentY = 0;
+                
+                // Initialize robot at center
+                function initRobot() {
+                    const rect = robotContainer.getBoundingClientRect();
+                    targetX = rect.width / 2;
+                    targetY = rect.height / 2;
+                    currentX = targetX;
+                    currentY = targetY;
+                }
+                
+                initRobot();
+                
+                // Update mouse position relative to container
+                robotContainer.addEventListener('mousemove', function(e) {
+                    const rect = robotContainer.getBoundingClientRect();
+                    mouseX = e.clientX - rect.left;
+                    mouseY = e.clientY - rect.top;
+                    targetX = mouseX;
+                    targetY = mouseY;
+                });
+                
+                // Reset to center when mouse leaves
+                robotContainer.addEventListener('mouseleave', function() {
+                    const rect = robotContainer.getBoundingClientRect();
+                    targetX = rect.width / 2;
+                    targetY = rect.height / 2;
+                });
+                
+                // Smooth animation loop
+                function animate() {
+                    // Smooth interpolation
+                    const ease = 0.15;
+                    currentX += (targetX - currentX) * ease;
+                    currentY += (targetY - currentY) * ease;
+                    
+                    // Calculate rotation angle
+                    const dx = targetX - currentX;
+                    const dy = targetY - currentY;
+                    const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+                    
+                    // Apply transform (centered on robot - 300px x 300px)
+                    robot.style.transform = `translate(${currentX - 150}px, ${currentY - 150}px) rotate(${angle}deg)`;
+                    
+                    requestAnimationFrame(animate);
+                }
+                
+                // Update on resize
+                window.addEventListener('resize', initRobot);
+                
+                // Start animation
+                animate();
+            })();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" type="image/png" href="/fav/favicon-32x32.png">
+        <link rel="shortcut icon" href="/favicon.ico">
+        <title>Our Capabilities - Vulcan ICT PLC</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="/css/bootstrap.css">
+        <link rel="stylesheet" href="/vendors/linericon/style.css">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/vendors/owl-carousel/owl.carousel.min.css">
+        <link rel="stylesheet" href="/vendors/lightbox/simpleLightbox.css">
+        <link rel="stylesheet" href="/vendors/nice-select/css/nice-select.css">
+        <link rel="stylesheet" href="/vendors/animate-css/animate.css">
+        <!-- main css -->
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/responsive.css">
+    </head>
+    <body>
+        
+        <!--================Header Menu Area =================-->
+        <%- include("partials/navbar") %>
+        <!--================Header Menu Area =================-->
+
+        
+        <!--================Home Banner Area =================-->
+        <section class="banner_area">
+            <div class="banner_inner d-flex align-items-center">
+            	<div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+				<div class="container">
+					<div class="banner_content text-center">
+						<h2>Our Capabilities</h2>
+						<div class="page_link">
+							<a href="/">Home</a>
+							<a href="/services">Capabilities</a>
+						</div>
+					</div>
+				</div>
+            </div>
+        </section>
+        <!--================End Home Banner Area =================-->
+        
+       <!--================Digital Government & Public Sector Systems =================-->
+       <% categories.forEach((category, index) => { %>
+  <section class="work_area p_120 <%= index % 2 !== 0 ? 'bg-light' : '' %>">
+    <div class="container">
+      <div class="main_title text-center">
+        <h2><%= category.name %></h2>
+        <p><%= category.description %></p>
+      </div>
+
+      <div class="row">
+       <% if (services && services.length > 0) { %>
+     <% services
+    .filter(service => service.category === category.name)
+    .forEach((service) => { %>
+
+       <%- include("partials/service-card", { service: service }) %>
+
+    <% }) %>
+  <% } else { %>
+    <p>No services found.</p>
+  <% } %>
+</div>    </div>
+  </section>
+<% }) %>
+        <!--================End Digital Government & Public Sector Systems =================-->
+        
+        <!--================Traceability, Compliance & Data Platforms =================-->
+        
+        <!--================End Traceability, Compliance & Data Platforms =================-->
+
+        <!--================Enterprise Systems & ERP =================-->
+        
+        <!--================End Enterprise Systems & ERP =================-->
+        
+        <!--================Digital Platforms & User Experience =================-->
+        
+        <!--================End Digital Platforms & User Experience =================-->
+        
+        <!--================Process Area =================-->
+        <section class="work_area p_120">
+        	<div class="container">
+        		<div class="main_title text-center">
+        			<h2>Our Approach</h2>
+        			<p>From consultation to long-term operation and support</p>
+        		</div>
+        		<div class="process_map">
+        		<div class="row">
+        			<div class="col-lg-3 col-md-6 mb-4">
+        				<div class="process_card_map">
+        					<div class="process_connector_right"></div>
+        					<div class="process_number_map">01</div>
+        					<div class="process_icon_map">
+        						<i class="fa fa-comments"></i>
+        					</div>
+        					<h4>Discovery & Consultation</h4>
+        					<p>We conduct comprehensive analysis of your operational requirements, regulatory context, and strategic objectives through stakeholder engagement and requirements gathering.</p>
+        					<div class="process_features">
+        						<span class="feature_tag">Requirements Analysis</span>
+        						<span class="feature_tag">Stakeholder Engagement</span>
+        						<span class="feature_tag">Regulatory Assessment</span>
+        					</div>
+        				</div>
+        			</div>
+        			<div class="col-lg-3 col-md-6 mb-4">
+        				<div class="process_card_map">
+        					<div class="process_connector_right"></div>
+        					<div class="process_number_map">02</div>
+        					<div class="process_icon_map planning_advanced">
+        						<i class="fa fa-lightbulb-o"></i>
+        						<div class="planning_animation">
+        							<div class="pulse_dot"></div>
+        							<div class="pulse_dot"></div>
+        							<div class="pulse_dot"></div>
+        						</div>
+        					</div>
+        					<h4>Strategic Planning</h4>
+        					<p>We develop implementation plans that align with your strategic objectives, regulatory requirements, and operational needs. Our planning includes architecture design, integration strategy, and long-term operation considerations.</p>
+        					<div class="process_features">
+        						<span class="feature_tag">System Architecture</span>
+        						<span class="feature_tag">Integration Planning</span>
+        						<span class="feature_tag">Risk Assessment</span>
+        					</div>
+        				</div>
+        			</div>
+        			<div class="col-lg-3 col-md-6 mb-4">
+        				<div class="process_card_map">
+        					<div class="process_connector_right"></div>
+        					<div class="process_number_map">03</div>
+        					<div class="process_icon_map">
+        						<i class="fa fa-code"></i>
+        					</div>
+        					<h4>System Development</h4>
+        					<p>We build systems using proven methodologies with iterative development, rigorous testing, and stakeholder feedback. Our development process ensures quality, compliance, and alignment with requirements.</p>
+        					<div class="process_features">
+        						<span class="feature_tag">Iterative Development</span>
+        						<span class="feature_tag">Quality Assurance</span>
+        						<span class="feature_tag">Stakeholder Reviews</span>
+        					</div>
+        				</div>
+        			</div>
+        			<div class="col-lg-3 col-md-6 mb-4">
+        				<div class="process_card_map">
+        					<div class="process_number_map">04</div>
+        					<div class="process_icon_map">
+        						<i class="fa fa-rocket"></i>
+        					</div>
+        					<h4>Deployment & Operation</h4>
+        					<p>We deploy systems with comprehensive training, documentation, and transition support. Our long-term partnership includes ongoing operation, maintenance, and system evolution to meet changing needs.</p>
+        					<div class="process_features">
+        						<span class="feature_tag">System Deployment</span>
+        						<span class="feature_tag">Training & Documentation</span>
+        						<span class="feature_tag">Ongoing Support</span>
+        					</div>
+        				</div>
+        			</div>
+        		</div>
+        		</div>
+        	</div>
+        </section>
+        <!--================End Process Area =================-->
+        
+        <!--================CTA Area =================-->
+       <section class="impress_area p_120">
+  <div class="container">
+    <div class="impress_inner text-center">
+      <h2><%= cta.title %></h2>
+      <p><%= cta.description %></p>
+      <div class="cta_buttons">
+        <a class="banner_btn2" href="<%= cta.button1_link %>"><%= cta.button1_text %></a>
+        <a class="banner_btn2_light" href="<%= cta.button2_link %>"><%= cta.button2_text %></a>
+      </div>
+    </div>
+  </div>
+</section>
+        <!--================End CTA Area =================-->
+       
+        <!--================Footer Area =================-->
+        <%- include("partials/footer") %>
+        <!--================End Footer Area =================-->
+        
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/popper.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/stellar.js"></script>
+        <script src="vendors/lightbox/simpleLightbox.min.js"></script>
+        <script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
+        <script src="vendors/isotope/imagesloaded.pkgd.min.js"></script>
+        <script src="vendors/isotope/isotope-min.js"></script>
+        <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+        <script src="js/jquery.ajaxchimp.min.js"></script>
+        <script src="js/mail-script.js"></script>
+        <script src="vendors/counter-up/jquery.waypoints.min.js"></script>
+        <script src="vendors/counter-up/jquery.counterup.min.js"></script>
+        <script src="js/theme.js"></script>
+    </body>
+</html>
