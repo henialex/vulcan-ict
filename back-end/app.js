@@ -54,6 +54,9 @@ const upload = require("./middleware/uploadProjectImage");
 
 // Middleware
 app.use(express.static(path.join(__dirname, "public")));
+// Serve the modern static CMS pages (dashboard.html, about.html, etc.)
+app.use("/admin", express.static(path.join(__dirname, "..", "front-end", "admin")));
+app.use(express.static(path.join(__dirname, "..", "front-end")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

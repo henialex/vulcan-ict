@@ -1,9 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const authAdmin = require("../middleware/authAdmin");
 
-router.get("/admin", authAdmin, (req, res) => {
-  res.render("admin/dashboard");
+router.get("/admin", (_req, res) => {
+  res.redirect("/admin/dashboard.html");
 });
 
 module.exports = router;
